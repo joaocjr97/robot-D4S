@@ -1,118 +1,141 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.3.2 (Python 3.13.7 on win32)" generated="2025-09-04T20:36:54.746866" rpa="false" schemaversion="5">
+<robot generator="Robot 7.3.2 (Python 3.13.7 on win32)" generated="2025-09-11T00:27:45.308527" rpa="false" schemaversion="5">
 <suite id="s1" name="Robot" source="C:\Users\joao.carlos_d4sign\Desktop\Robot">
 <suite id="s1-s1" name="Smoke Test - D4S" source="C:\Users\joao.carlos_d4sign\Desktop\Robot\Smoke Test - D4S">
-<suite id="s1-s1-s1" name="Envio-Desk" source="C:\Users\joao.carlos_d4sign\Desktop\Robot\Smoke Test - D4S\envio-desk.robot">
-<test id="s1-s1-s1-t1" name="Login" line="20">
+<suite id="s1-s1-s1" name="Assinatura-Lote" source="C:\Users\joao.carlos_d4sign\Desktop\Robot\Smoke Test - D4S\assinatura-lote.robot">
+<test id="s1-s1-s1-t1" name="Login" line="26">
 <kw name="Open Browser" owner="SeleniumLibrary">
-<msg time="2025-09-04T20:36:55.157438" level="INFO">Opening browser 'chrome' to base url 'https://secure.d4sign.com.br/'.</msg>
+<msg time="2025-09-11T00:27:45.710374" level="INFO">Opening browser 'chrome' to base url 'https://secure.d4sign.com.br/'.</msg>
 <arg>${URL}</arg>
 <arg>chrome</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<status status="PASS" start="2025-09-04T20:36:55.156908" elapsed="1.624460"/>
+<status status="PASS" start="2025-09-11T00:27:45.709913" elapsed="1.612254"/>
 </kw>
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>${Email}</arg>
 <arg>10s</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-09-04T20:36:56.781926" elapsed="1.963774"/>
+<status status="PASS" start="2025-09-11T00:27:47.323093" elapsed="2.431079"/>
 </kw>
 <kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-09-04T20:36:58.747049" level="INFO">Typing text 'automacao@d4sign.com.br' into text field 'id=Email'.</msg>
+<msg time="2025-09-11T00:27:49.756007" level="INFO">Typing text 'automacao@d4sign.com.br' into text field 'id=Email'.</msg>
 <arg>${Email}</arg>
 <arg>${USERNAME}</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-09-04T20:36:58.746254" elapsed="0.941636"/>
+<status status="PASS" start="2025-09-11T00:27:49.754994" elapsed="0.869198"/>
 </kw>
 <kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-09-04T20:36:59.691075" level="INFO">Typing text 'd4sign123' into text field 'id=Passwd'.</msg>
+<msg time="2025-09-11T00:27:50.626457" level="INFO">Typing text 'd4sign123' into text field 'id=Passwd'.</msg>
 <arg>${Passwd}</arg>
 <arg>${PASSWORD}</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-09-04T20:36:59.689167" elapsed="0.120843"/>
+<status status="PASS" start="2025-09-11T00:27:50.624752" elapsed="0.150006"/>
 </kw>
 <kw name="Click Button" owner="SeleniumLibrary">
-<msg time="2025-09-04T20:36:59.811422" level="INFO">Clicking button 'id=logar'.</msg>
+<msg time="2025-09-11T00:27:50.776329" level="INFO">Clicking button 'id=logar'.</msg>
 <arg>${logar}</arg>
 <doc>Clicks the button identified by ``locator``.</doc>
-<status status="PASS" start="2025-09-04T20:36:59.810497" elapsed="0.180404"/>
+<status status="PASS" start="2025-09-11T00:27:50.775497" elapsed="0.192039"/>
 </kw>
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>${logoD4S}</arg>
 <arg>10s</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-09-04T20:36:59.991455" elapsed="4.262350"/>
+<status status="PASS" start="2025-09-11T00:27:50.968778" elapsed="4.134524"/>
 </kw>
 <kw name="Page Should Contain Image" owner="SeleniumLibrary">
-<msg time="2025-09-04T20:37:04.277942" level="INFO">Current page contains image '//*[@id="page-wrapper"]/div[1]/nav/div/div/div[1]/a/img'.</msg>
+<msg time="2025-09-11T00:27:55.158235" level="INFO">Current page contains image '//*[@id="page-wrapper"]/div[1]/nav/div/div/div[1]/a/img'.</msg>
 <arg>${logoD4S}</arg>
 <doc>Verifies image identified by ``locator`` is found from current page.</doc>
-<status status="PASS" start="2025-09-04T20:37:04.254297" elapsed="0.025270"/>
+<status status="PASS" start="2025-09-11T00:27:55.103937" elapsed="0.054776"/>
 </kw>
-<status status="PASS" start="2025-09-04T20:36:55.152943" elapsed="9.128192"/>
+<status status="PASS" start="2025-09-11T00:27:45.706578" elapsed="9.453080"/>
 </test>
-<test id="s1-s1-s1-t2" name="Envio" line="29">
+<test id="s1-s1-s1-t2" name="Assinar em Lote" line="35">
 <kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2025-09-04T20:37:04.302371" level="INFO">Clicking element '//*[@id="drop-zone"]/a/p[2]'.</msg>
-<arg>${botaoEnvio}</arg>
+<msg time="2025-09-11T00:27:55.182784" level="INFO">Clicking element '//*[@id="div-menu-desk"]/ul[1]/li[2]/a'.</msg>
+<arg>${botaoLote}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-09-04T20:37:04.300960" elapsed="0.158296"/>
+<status status="PASS" start="2025-09-11T00:27:55.180809" elapsed="16.651029"/>
 </kw>
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
-<arg>${selectCofre}</arg>
+<arg>${paginaLote}</arg>
 <arg>10s</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-09-04T20:37:04.459971" elapsed="2.037358"/>
+<status status="PASS" start="2025-09-11T00:28:11.832561" elapsed="0.065112"/>
+</kw>
+<kw name="Reload Page" owner="SeleniumLibrary">
+<doc>Simulates user reloading page.</doc>
+<status status="PASS" start="2025-09-11T00:28:11.898214" elapsed="10.881829"/>
 </kw>
 <kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2025-09-04T20:37:06.498536" level="INFO">Clicking element 'name=uuid-cofre'.</msg>
-<arg>${selectCofre}</arg>
+<msg time="2025-09-11T00:28:22.782156" level="INFO">Clicking element '//*[@id="editable_paginate"]/ul/li[6]/a'.</msg>
+<arg>${botaoPagina5}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-09-04T20:37:06.497865" elapsed="0.212058"/>
+<status status="PASS" start="2025-09-11T00:28:22.780886" elapsed="15.556844"/>
 </kw>
 <kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2025-09-04T20:37:06.711570" level="INFO">Clicking element '//*[@id="formUpload"]/select/option[157]'.</msg>
-<arg>${selecionarCofre}</arg>
+<msg time="2025-09-11T00:28:38.339034" level="INFO">Clicking element '//*[@id="select_all"]'.</msg>
+<arg>${checkbox}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-09-04T20:37:06.710669" elapsed="0.159883"/>
+<status status="PASS" start="2025-09-11T00:28:38.338386" elapsed="0.151029"/>
 </kw>
-<kw name="Choose File" owner="SeleniumLibrary">
-<msg time="2025-09-04T20:37:06.872611" level="INFO">Sending C:\Users\joao.carlos_d4sign\Desktop\Robot\files\doc-testes.pdf to browser.</msg>
-<arg>${fileupload}</arg>
-<arg>${uploadArquivo}</arg>
-<doc>Inputs the ``file_path`` into the file input field ``locator``.</doc>
-<status status="PASS" start="2025-09-04T20:37:06.871482" elapsed="0.056000"/>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-09-11T00:28:38.491394" level="INFO">Clicking element '(//*[@id="divBtnMove"]/a)[3]'.</msg>
+<arg>${botaoAssinarLote}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-09-11T00:28:38.490177" elapsed="0.120934"/>
 </kw>
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
-<arg>${Aguardandoenvio}</arg>
-<arg>20s</arg>
+<arg>${senhaConta}</arg>
+<arg>10s</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-09-04T20:37:06.928239" elapsed="7.254614"/>
+<status status="PASS" start="2025-09-11T00:28:38.611889" elapsed="0.460697"/>
 </kw>
-<kw name="Page Should Contain Element" owner="SeleniumLibrary">
-<msg time="2025-09-04T20:37:14.200345" level="INFO">Current page contains element '//*[@id="page-wrapper"]/div[2]/div/div[1]/div/div/div/span[1]'.</msg>
-<arg>${Aguardandoenvio}</arg>
-<doc>Verifies that element ``locator`` is found on the current page.</doc>
-<status status="PASS" start="2025-09-04T20:37:14.183484" elapsed="0.017265"/>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-09-11T00:28:39.074429" level="INFO">Typing text 'd4sign123' into text field '//*[@id="senhaConta"]'.</msg>
+<arg>${senhaConta}</arg>
+<arg>${PASSWORD}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-09-11T00:28:39.073603" elapsed="0.135856"/>
 </kw>
-<status status="PASS" start="2025-09-04T20:37:04.291288" elapsed="9.910052"/>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-09-11T00:28:39.210305" level="INFO">Clicking element '//*[@id="btnSalvarAssinatura"]'.</msg>
+<arg>${assinar}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-09-11T00:28:39.209785" elapsed="0.083271"/>
+</kw>
+<kw name="Wait Until Page Does Not Contain Element" owner="SeleniumLibrary">
+<msg time="2025-09-11T00:30:39.500573" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-90.png"&gt;&lt;img src="selenium-screenshot-90.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-09-11T00:30:39.501601" level="FAIL">Element '//*[@id="form-assinaturaend"]' did not disappear in 2 minutes.</msg>
+<arg>${modal}</arg>
+<arg>120s</arg>
+<doc>Waits until the element ``locator`` disappears from the current page.</doc>
+<status status="FAIL" start="2025-09-11T00:28:39.293801" elapsed="120.254342">Element '//*[@id="form-assinaturaend"]' did not disappear in 2 minutes.</status>
+</kw>
+<kw name="Page Should Not Contain Element" owner="SeleniumLibrary">
+<arg>${modal}</arg>
+<doc>Verifies that element ``locator`` is not found on the current page.</doc>
+<status status="NOT RUN" start="2025-09-11T00:30:39.548634" elapsed="0.000353"/>
+</kw>
+<status status="FAIL" start="2025-09-11T00:27:55.169298" elapsed="164.380097">Element '//*[@id="form-assinaturaend"]' did not disappear in 2 minutes.</status>
 </test>
-<status status="PASS" start="2025-09-04T20:36:54.813106" elapsed="19.402243"/>
+<status status="FAIL" start="2025-09-11T00:27:45.361686" elapsed="174.202570"/>
 </suite>
-<status status="PASS" start="2025-09-04T20:36:54.798654" elapsed="19.439455"/>
+<status status="FAIL" start="2025-09-11T00:27:45.355615" elapsed="174.216858"/>
 </suite>
-<status status="PASS" start="2025-09-04T20:36:54.756507" elapsed="19.491364"/>
+<status status="FAIL" start="2025-09-11T00:27:45.318360" elapsed="174.271317"/>
 </suite>
 <statistics>
 <total>
-<stat pass="2" fail="0" skip="0">All Tests</stat>
+<stat pass="1" fail="1" skip="0">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat name="Robot" id="s1" pass="2" fail="0" skip="0">Robot</stat>
-<stat name="Smoke Test - D4S" id="s1-s1" pass="2" fail="0" skip="0">Robot.Smoke Test - D4S</stat>
-<stat name="Envio-Desk" id="s1-s1-s1" pass="2" fail="0" skip="0">Robot.Smoke Test - D4S.Envio-Desk</stat>
+<stat name="Robot" id="s1" pass="1" fail="1" skip="0">Robot</stat>
+<stat name="Smoke Test - D4S" id="s1-s1" pass="1" fail="1" skip="0">Robot.Smoke Test - D4S</stat>
+<stat name="Assinatura-Lote" id="s1-s1-s1" pass="1" fail="1" skip="0">Robot.Smoke Test - D4S.Assinatura-Lote</stat>
 </suite>
 </statistics>
 <errors>

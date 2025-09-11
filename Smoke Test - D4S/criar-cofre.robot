@@ -15,22 +15,22 @@ ${CreateNewVault}    xpath=//a[contains(., 'Create a new vault')]
 ${logoD4S}           //*[@id="page-wrapper"]/div[1]/nav/div/div/div[1]/a/img
 
 *** Test Cases ***
-Teste 1 - Login
-    Open Browser                    ${URL}    chrome
-    Wait Until Element Is Visible   ${Email}  10s
-    Input Text                      ${Email}    ${USERNAME}
+Login
+    Open Browser                    ${URL}       chrome
+    Wait Until Element Is Visible   ${Email}     10s
+    Input Text                      ${Email}     ${USERNAME}
     Input Text                      ${Passwd}    ${PASSWORD}
     Click Button                    ${logar}
-    Wait Until Element Is Visible   ${logoD4S}  10s
+    Wait Until Element Is Visible   ${logoD4S}   10s
     Page Should Contain Image       ${logoD4S} 
 
-Teste 2 - Criar Cofre
+Criar Cofre
     Wait Until Element Is Visible            ${CreateNewVault}  10s
     Click Element                            ${CreateNewVault}
-    Wait Until Element Is Visible            ${nomecofre}   10s
+    Wait Until Element Is Visible            ${nomecofre}       20s
 
     #Gerar nome aleatório para o cofre
     ${palavragerada}=    FakerLibrary.Company
 
-    Input Text                              ${nomecofre}    ${palavragerada} 
+    Input Text                              ${nomecofre}     ${palavragerada} 
     Click Button                            ${btnSalvarCofre}

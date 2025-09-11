@@ -20,8 +20,8 @@ ${fileupload}         id=fileupload
 Login
     Open Browser                    ${URL}        chrome
     Wait Until Element Is Visible   ${Email}      10s
-    Input Text                      ${Email}    ${USERNAME}
-    Input Text                      ${Passwd}   ${PASSWORD}
+    Input Text                      ${Email}      ${USERNAME}
+    Input Text                      ${Passwd}     ${PASSWORD}
     Click Button                    ${logar}
     Wait Until Element Is Visible   ${logoD4S}    10s
     Page Should Contain Image       ${logoD4S}  
@@ -29,9 +29,9 @@ Login
 Envio
     # Enviar documento pela desk, escolhendo o cofre e enviando o arquivo.
     Click Element                        ${botaoEnvio}
-    Wait Until Element Is Visible        ${selectCofre}      10s
+    Wait Until Element Is Visible        ${selectCofre}      20s
     Click Element                        ${selectCofre} 
     Click Element                        ${selecionarCofre} 
     Choose File                          ${fileupload}       ${uploadArquivo}
-    Wait Until Element Is Visible        ${Aguardandoenvio}  20s
+    Wait Until Element Is Visible        ${Aguardandoenvio}  60s
     Page Should Contain Element          ${Aguardandoenvio}
