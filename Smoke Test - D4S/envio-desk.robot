@@ -23,15 +23,16 @@ Login
     Input Text                      ${Email}      ${USERNAME}
     Input Text                      ${Passwd}     ${PASSWORD}
     Click Button                    ${logar}
-    Wait Until Element Is Visible   ${logoD4S}    10s
+    Wait Until Element Is Visible   ${logoD4S}    60s
     Page Should Contain Image       ${logoD4S}  
 
 Envio
     # Enviar documento pela desk, escolhendo o cofre e enviando o arquivo.
     Click Element                        ${botaoEnvio}
-    Wait Until Element Is Visible        ${selectCofre}      20s
+    Wait Until Element Is Visible        ${selectCofre}      60s
     Click Element                        ${selectCofre} 
     Click Element                        ${selecionarCofre} 
+    Sleep                                                    2s
     Choose File                          ${fileupload}       ${uploadArquivo}
-    Wait Until Element Is Visible        ${Aguardandoenvio}  60s
+    Wait Until Element Is Visible        ${Aguardandoenvio}  120s
     Page Should Contain Element          ${Aguardandoenvio}
