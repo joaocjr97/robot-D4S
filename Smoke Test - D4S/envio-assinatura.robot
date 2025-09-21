@@ -1,5 +1,6 @@
 *** Settings ***
 Library    SeleniumLibrary
+Library    OperatingSystem
 
 *** Variables ***
 ${URL}                 https://secure.d4sign.com.br/
@@ -11,7 +12,7 @@ ${Email}               id=Email
 ${Passwd}              id=Passwd
 ${logoD4S}             //*[@id="page-wrapper"]/div[1]/nav/div/div/div[1]/a/img
 ${botaoEnvio}          //*[@id="drop-zone"]/a/p[2]
-${uploadArquivo}       C:/Users/joao.carlos_d4sign/Desktop/Robot/files/doc-testes.pdf
+${RELATIVE_PATH}       ${CURDIR}/../files/doc-testes.pdf
 ${Aguardandoenvio}     //*[@id="page-wrapper"]/div[2]/div/div[1]/div/div/div/span[1]
 ${selectCofre}         name=uuid-cofre
 ${selecionarCofre}     //*[@id="formUpload"]/select/option[157]
@@ -44,9 +45,11 @@ Envio
     Click Element                        ${selectCofre} 
     Click Element                        ${selecionarCofre}
     Sleep                                                    2s
-    Choose File                          ${fileupload}       ${uploadArquivo}
-    Wait Until Element Is Visible        ${Aguardandoenvio}  20s
-    Page Should Contain Element          ${Aguardandoenvio}
+    # Aqui, o uso da segunda lib do arquivo, ajuda a driblar o impeditivo do caminho absoluto do arquivo e ser usado o relativo.
+    ${ABSOLUTE_PATH}=     Normalize Path  ${RELATIVE_PATH}
+    Choose File                           ${fileupload}       ${ABSOLUTE_PATH}
+    Wait Until Element Is Visible         ${Aguardandoenvio}  20s
+    Page Should Contain Element           ${Aguardandoenvio}
 
 Assinatura
     # Assinar o documento enviado pela desk.

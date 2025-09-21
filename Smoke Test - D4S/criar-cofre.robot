@@ -12,7 +12,7 @@ ${btnSalvarCofre}    id=btnSalvarCofre
 ${logar}             id=logar
 ${Email}             id=Email
 ${Passwd}            id=Passwd
-${CreateNewVault}    xpath=//a[contains(., 'Create a new vault')]
+${CreateNewVault}    //*[@id="div-menu-desk"]/span[1]/a
 ${logoD4S}           //*[@id="page-wrapper"]/div[1]/nav/div/div/div[1]/a/img
 
 *** Test Cases ***
