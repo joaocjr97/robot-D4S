@@ -18,7 +18,7 @@ Login
 Acessar o cofre e listar fases
     Click Element                   ${cofre12}
     Wait Until Element Is Visible   ${btnFase}
-    Click Element                   ${btnFase}     
+    Click Element                   ${btnFase}
     Click Element                   ${fase1}
     Page Should Contain Element     ${signatarios}
     Click Element                   ${btnFase}

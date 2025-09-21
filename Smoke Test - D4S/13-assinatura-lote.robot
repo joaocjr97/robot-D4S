@@ -16,15 +16,17 @@ Login
 
 Assinar em Lote
     Click Element                               ${botaoLote}
-    Wait Until Element Is Visible               ${paginaLote}   10s
+    Wait Until Element Is Visible               ${paginaLote}          10s
     Reload Page                                 # Reload para driblar modal de IA
     Click Element                               ${botaoPagina5}
     Click Element                               ${botaoPagina9}
     Click Element                               ${botaoPagina13}
+    Sleep                                       2s
     Click Element                               ${checkbox}
     Click Element                               ${botaoAssinarLote}
-    Wait Until Element Is Visible               ${senhaConta}  10s
-    Input Text                                  ${senhaConta}  ${PASSWORD}
-    Click Element                               ${assinar}
-    Wait Until Page Does Not Contain Element    ${modal}       240s        # Tempo grande para esperar assinar em lote
+    Wait Until Element Is Visible               ${senhaContaLote}      10s
+    Input Text                                  ${senhaContaLote}      ${PASSWORD}
+    Click Element                               ${salvarAssinatura}
+    # Tempo grande para esperar assinar em lote
+    Wait Until Page Does Not Contain Element    ${modal}               240s
     Page Should Not Contain Element             ${modal}

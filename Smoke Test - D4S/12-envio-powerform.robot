@@ -17,16 +17,16 @@ Login
     Page Should Contain Image       ${logoD4S} 
 
 Preparação do PowerForm
-    Click Element                  ${CLM}
-    Click Element                  ${PowerForm}
-    Wait Until Element Is Visible  ${criarPowerForm}    20s
-    Click Element                  ${criarPowerForm}
-    Wait Until Page Contains Element  //*[@id="formPowerForm"]       20s
-    Click Element                      //*[@id="uuid_cofre"]
-    Click Element                      ${selecionarCofre}
-    Sleep                                               5s
+    Click Element                          ${CLM}
+    Click Element                          ${PowerForm}
+    Wait Until Element Is Visible          ${criarPowerForm}            20s
+    Click Element                          ${criarPowerForm}
+    Wait Until Page Contains Element       ${modalPowerForm}            20s
+    Click Element                          ${campoCofrePF}
+    Click Element                          ${selecionarCofrePF}
+    Sleep                                                               5s
     # O tempo de carregamento após selecionar o cofre é maior, por isso o sleep.
-    Click Element                  ${campoTemplate}
+    Click Element                  //*[@id="uuid-template"]
     Click Element                  ${campoTemplate}     
     Click Element                  ${selecionarTemplate}
     Input Text                     ${nomeDocumento}     PowerForm - Automação

@@ -46,5 +46,4 @@ Assinatura do Template
     Input Text                            ${senhaConta}          ${PASSWORD}
     Click Element                         ${salvarAssinatura}
     Wait Until Element Is Visible         ${verificaAssinatura}  20s
-    Page Should Contain Element           ${verificaAssinatura}    
-
+    Page Should Contain Element           ${verificaAssinatura}

@@ -57,7 +57,7 @@ ${urgenteTag}        //*[@id="div-tags-635fbe6a-53bc-4bab-b569-da512c267bd8"]/di
 # =============================================================================
 # LISTAR FASES (03-listar-fases.robot)
 # =============================================================================
-
+${cofre12}           //*[@id="liCofre_1414985"]/a
 ${btnFase}           //*[@id="divBtnMoveFase"]/button
 ${fase1}             //*[@id="divBtnMoveFase"]/ul/li[3]/a
 ${signatarios}       //span[contains(normalize-space(text()), 'AGUARDANDO SIGNATÁRIOS')]
@@ -84,13 +84,13 @@ ${newfile}           //*[@id="page-wrapper"]/div[2]/div[2]/div[2]/div/div[1]/div
 # ASSINATURA (07-envio-assinatura.robot, 08-envio-grupo-assinatura.robot)
 # =============================================================================
 
-${incluirEmail}      //*[@id="page-wrapper"]/div[2]/div/div[1]/div/div/div/div[4]/div/div[2]/div[1]/span[1]/a
-${botaoAssinatura}   //*[@id="enviar-para-assinatura"]
-${botaoEnvio2}       //*[@id="btnSalvarDocumento"]
-${faseEnviado}       //*[@id="page-wrapper"]/div[2]/div/div[1]/div/div/span[1]
-${assinar}           //*[@id="adicionar-assinatura"]
-${senhaConta}        id=senhaConta
-${salvarAssinatura}  //*[@id="btnSalvarAssinatura"]
+${incluirEmail}          //*[@id="page-wrapper"]/div[2]/div/div[1]/div/div/div/div[4]/div/div[2]/div[1]/span[1]/a
+${botaoAssinatura}       //*[@id="enviar-para-assinatura"]
+${botaoEnvio2}           //*[@id="btnSalvarDocumento"]
+${faseEnviado}           //*[@id="page-wrapper"]/div[2]/div/div[1]/div/div/span[1]
+${assinar}               //*[@id="adicionar-assinatura"]
+${senhaConta}            id=senhaConta
+${salvarAssinatura}      //*[@id="btnSalvarAssinatura"]
 ${verificaAssinatura}    //*[@id="viewblobdiv"]/div[2]/div[1]
 
 # Elementos específicos para grupo de assinatura
@@ -152,20 +152,22 @@ ${tagProcessado}     //small[contains(text(), 'PROCESSADO')]
 # POWERFORM (12-envio-powerform.robot)
 # =============================================================================
 
-${CLM}               //*[@id="page-wrapper"]/div[2]/div[1]/div[3]/div/a
-${PowerForm}         //*[@id="page-wrapper"]/div[2]/div[1]/div[3]/div/ul/li[5]/a
-${criarPowerForm}    //*[@id="btnSaveTemplate"]
-${campoCofre}        //*[@id="uuid_cofre"]
-${selecionarCofre}   //*[@id="uuid_cofre"]/option[2]
-${campoTemplate}     //*[@id="uuid-template"]
+${CLM}                   //*[@id="page-wrapper"]/div[2]/div[1]/div[3]/div/a
+${PowerForm}             //*[@id="page-wrapper"]/div[2]/div[1]/div[3]/div/ul/li[5]/a
+${criarPowerForm}        //*[@id="btnSaveTemplate"]
+${campoCofrePF}          //*[@id="uuid_cofre"]
+${selecionarCofrePF}     //*[@id="uuid_cofre"]/option[2]
+${campoTemplate}         //*[@id="uuid-template"]
 ${selecionarTemplate}    //*[@id="meus-templates"]/option[338]
-${nomeDocumento}     //*[@id="nome_documento"]
-${botaoContinuar}    //*[@id="docButton"]
-${btntoken}          //*[@id="tokenCount"]/button
-${campoEmail}        //*[@id="email_be7b9c59-e046-4f7f-999f-19f91b57c346"]
-${btnEmail}          //*[@id="fillerButton"]
-${btnsend}           //*[@id="pfv2-result"]/button
-${btnSalvarPower}    //*[@id="btnSalvarPower"]
+${nomeDocumento}         //*[@id="nome_documento"]
+${botaoContinuar}        //*[@id="docButton"]
+${btntoken}              //*[@id="tokenCount"]/button
+${campoEmail}            //*[@id="email_be7b9c59-e046-4f7f-999f-19f91b57c346"]
+${btnEmail}              //*[@id="fillerButton"]
+${btnsend}               //*[@id="pfv2-result"]/button
+${btnSalvarPower}        //*[@id="btnSalvarPower"]
+${modalPowerForm}        //*[@id="formPowerForm"]
+
 
 # =============================================================================
 # ASSINATURA EM LOTE (13-assinatura-lote.robot)
@@ -177,5 +179,6 @@ ${botaoPagina5}      //*[@id="editable_paginate"]/ul/li[6]/a
 ${botaoPagina9}      //*[@id="editable_paginate"]/ul/li[10]/a
 ${botaoPagina13}     //*[@id="editable_paginate"]/ul/li[11]/a
 ${checkbox}          //*[@id="select_all"]
-${botaoAssinarLote}  (//*[@id="divBtnMove"]/a)[3]
+${botaoAssinarLote}  //a[contains(., 'Assinar em lote')]
 ${modal}             //*[@id="form-assinaturaend"]
+${senhaContaLote}    //*[@id="senhaConta"]

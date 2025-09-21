@@ -23,5 +23,5 @@ Criar Cofre
     #Gerar nome aleatório para o cofre
     ${palavragerada}=    FakerLibrary.Company
 
-    Input Text                              ${nomecofre}     ${palavragerada} 
+    Input Text                              ${nomecofre}        ${palavragerada} 
     Click Button                            ${btnSalvarCofre}
