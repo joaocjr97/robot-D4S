@@ -62,7 +62,17 @@ pip install robotframework-faker
 pip install robotframework-operatingsystem
 ```
 
-### 4. Configure o ChromeDriver
+### 4. Configure os dados sensíveis
+
+```bash
+# Copie o arquivo de exemplo
+copy "Smoke Test - D4S\config_sensitive.example.robot" "Smoke Test - D4S\config_sensitive.robot"
+
+# Edite o arquivo com suas credenciais reais
+notepad "Smoke Test - D4S\config_sensitive.robot"
+```
+
+### 5. Configure o ChromeDriver
 
 1. Baixe o ChromeDriver compatível com sua versão do Chrome em [chromedriver.chromium.org](https://chromedriver.chromium.org/downloads)
 2. Adicione o executável ao seu PATH ou coloque na pasta do projeto

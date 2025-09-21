@@ -128,6 +128,57 @@ robot --timeout 60s --outputdir results .
 - **Tempo de execução** - Duração total da suíte
 - **Testes críticos** - Identificar quais testes são mais importantes
 
+## 🔐 Configuração de Dados Sensíveis
+
+### Estrutura de Arquivos de Configuração
+
+O projeto utiliza uma estrutura separada para dados sensíveis:
+
+```
+Smoke Test - D4S/
+├── config_sensitive.robot      # Dados sensíveis (NÃO commitar)
+├── config_sensitive.example.robot  # Exemplo de configuração
+├── variables.robot             # Elementos e dados não sensíveis
+└── *.robot                     # Arquivos de teste
+```
+
+### Configuração Inicial
+
+1. **Copie o arquivo de exemplo:**
+   ```powershell
+   copy "config_sensitive.example.robot" "config_sensitive.robot"
+   ```
+
+2. **Edite o arquivo `config_sensitive.robot` com seus dados reais:**
+   ```robot
+   *** Variables ***
+   ${USERNAME}          seu_email@d4sign.com.br
+   ${PASSWORD}          sua_senha_real
+   ${URL}               https://secure.d4sign.com.br/
+   ${EMAIL_TESTE}       email_para_teste@exemplo.com
+   ```
+
+3. **Verifique se o arquivo está no `.gitignore`:**
+   - O arquivo `config_sensitive.robot` não será commitado
+   - Apenas o arquivo de exemplo será versionado
+
+### Vantagens desta Estrutura
+
+- ✅ **Segurança:** Credenciais não ficam expostas no código
+- ✅ **Flexibilidade:** Fácil mudança de ambiente (dev/prod)
+- ✅ **Manutenção:** Elementos centralizados em `variables.robot`
+- ✅ **Colaboração:** Cada desenvolvedor tem suas próprias credenciais
+
+### Executando com Configuração Personalizada
+
+```powershell
+# Usar arquivo de configuração específico
+robot --variablefile config_sensitive.robot --outputdir results .
+
+# Usar variáveis de ambiente
+robot --variable USERNAME:$env:USERNAME --variable PASSWORD:$env:PASSWORD --outputdir results .
+```
+
 ---
 
 **💡 Dica:** Para desenvolvimento contínuo, execute testes individuais durante o desenvolvimento e a suíte completa antes de commits importantes.

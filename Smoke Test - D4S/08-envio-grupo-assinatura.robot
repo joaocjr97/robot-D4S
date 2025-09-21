@@ -1,33 +1,8 @@
 *** Settings ***
 Library    SeleniumLibrary
+Resource   variables.robot
+Resource   config_sensitive.robot
 Library    OperatingSystem
-
-*** Variables ***
-${URL}                 https://secure.d4sign.com.br/
-${USERNAME}            automacao@d4sign.com.br
-${PASSWORD}            d4sign123
-${setcookie}           document.cookie = "contratoazul_language=pt"
-${logar}               //*[@id="logar"]
-${Email}               id=Email
-${Passwd}              id=Passwd
-${logoD4S}             //*[@id="page-wrapper"]/div[1]/nav/div/div/div[1]/a/img
-${botaoEnvio}          //*[@id="drop-zone"]/a/p[2]
-${RELATIVE_PATH}       ${CURDIR}/../files/doc-testes.pdf
-${Aguardandoenvio}     //*[@id="page-wrapper"]/div[2]/div/div[1]/div/div/div/span[1]
-${selectCofre}         name=uuid-cofre
-${selecionarCofre}     //*[@id="formUpload"]/select/option[157]
-${fileupload}          id=fileupload
-${incluirEmail}        //*[@id="page-wrapper"]/div[2]/div/div[1]/div/div/div/div[4]/div/div[2]/div[1]/span[1]/a
-${botaoAssinatura}     //*[@id="enviar-para-assinatura"]
-${botaoEnvio2}         //*[@id="btnSalvarDocumento"]
-${faseEnviado}         //*[@id="page-wrapper"]/div[2]/div/div[1]/div/div/span[1]
-${assinar}             //*[@id="adicionar-assinatura"]
-${senhaConta}          id=senhaConta
-${salvarAssinatura}    //*[@id="btnSalvarAssinatura"]
-${verificaAssinatura}  //*[@id="viewblobdiv"]/div[2]/div[1]
-${grupo}               //*[@id="page-wrapper"]/div[2]/div/div[1]/div/div/div/div[4]/div/div[2]/div[1]/span[3]/a
-${filtroGrupo}         //*[@id="filtro-grupos"]
-${selecionarGrupo}     //*[@id="tabela-grupos"]/tbody/tr[29]/td[2]/a
 
 *** Test Cases ***
 Login

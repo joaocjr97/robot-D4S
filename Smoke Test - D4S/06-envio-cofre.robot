@@ -1,26 +1,9 @@
 *** Settings ***
 Library    SeleniumLibrary
+Resource   variables.robot
+Resource   config_sensitive.robot
 Library    OperatingSystem
-
-*** Variables ***
-${URL}                https://secure.d4sign.com.br/
-${USERNAME}           automacao@d4sign.com.br
-${PASSWORD}           d4sign123
-${logar}              //*[@id="logar"]
-${Email}              id=Email
-${setcookie}          document.cookie = "contratoazul_language=pt"
-${Passwd}             id=Passwd
-${logoD4S}            //*[@id="page-wrapper"]/div[1]/nav/div/div/div[1]/a/img
-${botaoEnvio}         //*[@id="drop-zone"]/a/p[2]
-${RELATIVE_PATH}      ${CURDIR}/../files/doc-testes.pdf
-${Aguardandoenvio}    //*[@id="page-wrapper"]/div[2]/div/div[1]/div/div/div/span[1]
-${selectCofre}        name=uuid-cofre
-${selecionarCofre}    //*[@id="formUpload"]/select/option[157]
-${fileupload}         id=fileupload
-${cofre}              //*[@id="liCofre_1414985"]/a
-${novoArquivo}        id=label-new-file
-${newfile}            //*[@id="page-wrapper"]/div[2]/div[2]/div[2]/div/div[1]/div[2]/ul/li[1]/a
-
+    
 *** Test Cases ***
 Login
     Open Browser                    ${URL}        chrome
@@ -34,7 +17,7 @@ Login
 
 Envio
     # Enviar documento pela cofre, escolhendo o cofre e enviando o arquivo.
-    Click Element                        ${cofre}
+    Click Element                        ${cofre12}
     Wait Until Element Is Visible        ${novoArquivo}      20s
     Click Element                        ${novoArquivo}
     Click Element                        ${newfile}

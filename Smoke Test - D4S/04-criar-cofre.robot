@@ -1,33 +1,22 @@
 *** Settings ***
 Library    SeleniumLibrary
 Library    FakerLibrary
-
-*** Variables ***
-${URL}               https://secure.d4sign.com.br/
-${USERNAME}          automacao@d4sign.com.br
-${setcookie}         document.cookie = "contratoazul_language=pt"
-${PASSWORD}          d4sign123
-${nomecofre}         id=nomeCofre  
-${btnSalvarCofre}    id=btnSalvarCofre
-${logar}             id=logar
-${Email}             id=Email
-${Passwd}            id=Passwd
-${CreateNewVault}    //*[@id="div-menu-desk"]/span[1]/a
-${logoD4S}           //*[@id="page-wrapper"]/div[1]/nav/div/div/div[1]/a/img
+Resource   variables.robot
+Resource   config_sensitive.robot
 
 *** Test Cases ***
 Login
     Open Browser                    ${URL}       chrome
     Execute Javascript              ${setcookie}
-    Wait Until Element Is Visible   ${Email}     10s
+    Wait Until Element Is Visible   ${Email}     ${TIMEOUT}
     Input Text                      ${Email}     ${USERNAME}
     Input Text                      ${Passwd}    ${PASSWORD}
     Click Button                    ${logar}
-    Wait Until Element Is Visible   ${logoD4S}   10s
+    Wait Until Element Is Visible   ${logoD4S}   ${TIMEOUT}
     Page Should Contain Image       ${logoD4S} 
 
 Criar Cofre
-    Wait Until Element Is Visible            ${CreateNewVault}  10s
+    Wait Until Element Is Visible            ${CreateNewVault}  ${TIMEOUT}
     Click Element                            ${CreateNewVault}
     Wait Until Element Is Visible            ${nomecofre}       20s
 

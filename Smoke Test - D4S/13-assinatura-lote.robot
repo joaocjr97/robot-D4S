@@ -1,29 +1,7 @@
 *** Settings ***
 Library    SeleniumLibrary
-
-*** Variables ***
-${URL}                   https://secure.d4sign.com.br/
-${USERNAME}              automacao@d4sign.com.br
-${PASSWORD}              d4sign123
-${nomecofre}             id=nomeCofre  
-${setcookie}             document.cookie = "contratoazul_language=pt"
-${btnSalvarCofre}        id=btnSalvarCofre
-${logar}                 id=logar
-${Email}                 id=Email
-${Passwd}                id=Passwd
-${CreateNewVault}        xpath=//a[contains(., 'Create a new vault')]
-${logoD4S}               //*[@id="page-wrapper"]/div[1]/nav/div/div/div[1]/a/img
-${botaoLote}             //*[@id="div-menu-desk"]/ul[1]/li[2]/a
-${paginaLote}            //*[@id="page-wrapper"]/div[2]/div[2]/div[2]/div/div[3]
-${botaoPagina5}          //*[@id="editable_paginate"]/ul/li[6]/a
-${botaoPagina9}          //*[@id="editable_paginate"]/ul/li[10]/a
-${botaoPagina13}         //*[@id="editable_paginate"]/ul/li[11]/a
-${checkbox}              //*[@id="select_all"]
-${botaoAssinarLote}      (//*[@id="divBtnMove"]/a)[3]
-${senhaConta}            //*[@id="senhaConta"]
-${assinar}               //*[@id="btnSalvarAssinatura"]
-${modal}                 //*[@id="form-assinaturaend"]
-
+Resource   variables.robot
+Resource   config_sensitive.robot
 
 *** Test Cases ***
 Login

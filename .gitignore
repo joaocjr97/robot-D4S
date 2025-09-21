@@ -1,0 +1,38 @@
+# Arquivos de configuração sensíveis
+config_sensitive.robot
+config_sensitive.py
+config_sensitive.json
+*.env
+.env
+
+# Arquivos de log e resultados
+results/
+*.log
+*.html
+*.xml
+
+# Screenshots
+*.png
+*.jpg
+*.jpeg
+
+# Arquivos temporários
+*.tmp
+*.temp
+__pycache__/
+*.pyc
+*.pyo
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Arquivos de backup
+*.bak
+*.backup

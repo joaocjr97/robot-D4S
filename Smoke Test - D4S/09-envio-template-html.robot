@@ -1,41 +1,7 @@
 *** Settings ***
 Library    SeleniumLibrary
-
-*** Variables ***
-${URL}                 https://secure.d4sign.com.br/
-${USERNAME}            automacao@d4sign.com.br
-${PASSWORD}            d4sign123
-${logar}               id=logar
-${Email}               id=Email
-${setcookie}           document.cookie = "contratoazul_language=pt"
-${Passwd}              id=Passwd
-${logoD4S}             //*[@id="page-wrapper"]/div[1]/nav/div/div/div[1]/a/img
-${botaoEnvio}          //*[@id="drop-zone"]/a/p[2]
-${uploadArquivo}       H:\robot-D4S\files\doc-testes.pdf
-${Aguardandoenvio}     //*[@id="page-wrapper"]/div[2]/div/div[1]/div/div/div/span[1]
-${selectCofre}         name=uuid-cofre
-${selecionarCofre}     //*[@id="formUpload"]/select/option[157]
-${fileupload}          id=fileupload
-${incluirEmail}        //*[@id="page-wrapper"]/div[2]/div/div[1]/div/div/div/div[4]/div/div[2]/div[1]/span[1]/a
-${botaoAssinatura}     //*[@id="enviar-para-assinatura"]
-${botaoEnvio2}         //*[@id="btnSalvarDocumento"]
-${faseEnviado}         //*[@id="page-wrapper"]/div[2]/div/div[1]/div/div/span[1]
-${assinar}             //*[@id="adicionar-assinatura"]
-${senhaConta}          id=senhaConta
-${salvarAssinatura}    //*[@id="btnSalvarAssinatura"]
-${verificaAssinatura}  //*[@id="viewblobdiv"]/div[2]/div[1]
-${cofre}               //*[@id="liCofre_1414985"]/a
-${novoArquivo}         id=label-new-file
-${templateHTML}        //*[@id="page-wrapper"]/div[2]/div[2]/div[2]/div/div[1]/div[2]/ul/li[4]/a
-${campoMarca}          //*[@id="keyt_marca"]
-${campoLaranja}        //*[@id="keyt_laranja"]
-${campoCor}            //*[@id="keyt_cor"]
-${campoTrueFALSE}      //*[@id="keyt_trueFALSE"]
-${campoRua}            //*[@id="keyt_rua"]
-${campoLugares}        //*[@id="keyt_lugares"]
-${campoRestaurant}     //*[@id="keyt_restaurant"]
-${salvarTemplate}      //*[@id="btnSaveTemplate"]
-${verificaEnvio}       //*[@id="email-assinatura"]
+Resource   variables.robot
+Resource   config_sensitive.robot
 
 *** Test Cases ***
 Login
@@ -50,7 +16,7 @@ Login
 
 Preenchimento de Template HTML
     # Enviar o template pelo cofre, preenchendo o arquivo e verificando a viewblob.
-    Click Element                        ${cofre}
+    Click Element                        ${cofre12}
     Wait Until Element Is Visible        ${novoArquivo}       20s
     Click Element                        ${novoArquivo}
     Click Element                        ${templateHTML}
@@ -80,4 +46,5 @@ Assinatura do Template
     Input Text                            ${senhaConta}          ${PASSWORD}
     Click Element                         ${salvarAssinatura}
     Wait Until Element Is Visible         ${verificaAssinatura}  20s
-    Page Should Contain Element           ${verificaAssinatura}    
+    Page Should Contain Element           ${verificaAssinatura}
+
