@@ -6,6 +6,7 @@ ${URL}                 https://secure.d4sign.com.br/
 ${USERNAME}            automacao@d4sign.com.br
 ${PASSWORD}            d4sign123
 ${logar}               id=logar
+${setcookie}           document.cookie = "contratoazul_language=pt"
 ${Email}               id=Email
 ${Passwd}              id=Passwd
 ${logoD4S}             //*[@id="page-wrapper"]/div[1]/nav/div/div/div[1]/a/img
@@ -28,6 +29,7 @@ ${verificaAssinatura}  //*[@id="viewblobdiv"]/div[2]/div[1]
 *** Test Cases ***
 Login
     Open Browser                    ${URL}        chrome
+    Execute Javascript              ${setcookie}
     Wait Until Element Is Visible   ${Email}      10s
     Input Text                      ${Email}      ${USERNAME}
     Input Text                      ${Passwd}     ${PASSWORD}

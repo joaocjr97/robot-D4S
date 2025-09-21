@@ -7,6 +7,7 @@ ${USERNAME}           automacao@d4sign.com.br
 ${PASSWORD}           d4sign123
 ${logar}              //*[@id="logar"]
 ${Email}              id=Email
+${setcookie}          document.cookie = "contratoazul_language=pt"
 ${Passwd}             id=Passwd
 ${logoD4S}            //*[@id="page-wrapper"]/div[1]/nav/div/div/div[1]/a/img
 ${botaoEnvio}         //*[@id="drop-zone"]/a/p[2]
@@ -22,6 +23,7 @@ ${newfile}            //*[@id="page-wrapper"]/div[2]/div[2]/div[2]/div/div[1]/di
 *** Test Cases ***
 Login
     Open Browser                    ${URL}        chrome
+    Execute Javascript              ${setcookie}
     Wait Until Element Is Visible   ${Email}      10s
     Input Text                      ${Email}      ${USERNAME}
     Input Text                      ${Passwd}     ${PASSWORD}

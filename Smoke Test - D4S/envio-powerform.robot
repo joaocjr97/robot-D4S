@@ -10,6 +10,7 @@ ${PASSWORD}              d4sign123
 ${nomecofre}             id=nomeCofre  
 ${btnSalvarCofre}        id=btnSalvarCofre
 ${logar}                 //*[@id="logar"]
+${setcookie}             document.cookie = "contratoazul_language=pt"
 ${Email}                 id=Email
 ${Passwd}                id=Passwd
 ${CreateNewVault}        xpath=//a[contains(., 'Create a new vault')]
@@ -35,6 +36,7 @@ ${btnSalvarPower}        //*[@id="btnSalvarPower"]
 *** Test Cases ***
 Login
     Open Browser                    ${URL}       chrome
+    Execute Javascript              ${setcookie}
     Wait Until Element Is Visible   ${Email}     10s
     Input Text                      ${Email}     ${USERNAME}
     Input Text                      ${Passwd}    ${PASSWORD}

@@ -5,6 +5,7 @@ Library    FakerLibrary
 *** Variables ***
 ${URL}               https://secure.d4sign.com.br/
 ${USERNAME}          automacao@d4sign.com.br
+${setcookie}         document.cookie = "contratoazul_language=pt"
 ${PASSWORD}          d4sign123
 ${nomecofre}         id=nomeCofre  
 ${btnSalvarCofre}    id=btnSalvarCofre
@@ -17,6 +18,7 @@ ${logoD4S}           //*[@id="page-wrapper"]/div[1]/nav/div/div/div[1]/a/img
 *** Test Cases ***
 Login
     Open Browser                    ${URL}       chrome
+    Execute Javascript              ${setcookie}
     Wait Until Element Is Visible   ${Email}     10s
     Input Text                      ${Email}     ${USERNAME}
     Input Text                      ${Passwd}    ${PASSWORD}

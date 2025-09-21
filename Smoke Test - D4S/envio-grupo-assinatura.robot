@@ -5,6 +5,7 @@ Library    SeleniumLibrary
 ${URL}                 https://secure.d4sign.com.br/
 ${USERNAME}            automacao@d4sign.com.br
 ${PASSWORD}            d4sign123
+${setcookie}           document.cookie = "contratoazul_language=pt"
 ${logar}               //*[@id="logar"]
 ${Email}               id=Email
 ${Passwd}              id=Passwd
@@ -30,6 +31,7 @@ ${selecionarGrupo}     //*[@id="tabela-grupos"]/tbody/tr[29]/td[2]/a
 *** Test Cases ***
 Login
     Open Browser                    ${URL}        chrome
+    Execute Javascript              ${setcookie}
     Wait Until Element Is Visible   ${Email}      10s
     Input Text                      ${Email}      ${USERNAME}
     Input Text                      ${Passwd}     ${PASSWORD}
