@@ -8,7 +8,10 @@
 
 # Configurações de navegador
 ${BROWSER}           chrome
-${TIMEOUT}           10s
+${BROWSER_HEADLESS}  headlesschrome
+${TIMEOUT}           50s
+${WINDOW_SIZE}       --window-size=1920,1080
+${CHROME_OPTIONS}    add_argument(--headless),add_argument(--window-size=1920,1080)
 
 # JavaScript para configurações
 ${setcookie}         document.cookie = "contratoazul_language=pt"

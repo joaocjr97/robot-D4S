@@ -5,7 +5,8 @@ Resource   config_sensitive.robot
 
 *** Test Cases ***
 Login
-    Open Browser                    ${URL}       ${BROWSER}
+    Open Browser      ${URL}   headlesschrome    arguments=--window-size=1920,1080
+    Set Window Size   1920    1080
     Execute Javascript              ${setcookie}    
 # Define o cookie para evitar o popup de escolha de idioma
     Wait Until Element Is Visible   ${Email}     ${TIMEOUT}

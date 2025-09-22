@@ -6,7 +6,7 @@ Library    OperatingSystem
     
 *** Test Cases ***
 Login
-    Open Browser                    ${URL}        chrome
+    Open Browser                    ${URL}        ${BROWSER}
     Execute Javascript              ${setcookie}
     Wait Until Element Is Visible   ${Email}      10s
     Input Text                      ${Email}      ${USERNAME}

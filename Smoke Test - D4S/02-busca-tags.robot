@@ -5,7 +5,7 @@ Resource   config_sensitive.robot
 
 *** Test Cases ***
 Login
-    Open Browser                    ${URL}       chrome    
+    Open Browser                    ${URL}       ${BROWSER_HEADLESS}    
     Maximize Browser Window
     Execute Javascript              ${setcookie}    
 # Define o cookie para evitar o popup de escolha de idioma
@@ -17,11 +17,11 @@ Login
     Page Should Contain Image       ${logoD4S} 
 
 
-Busca de e-mail de signatário
+Busca de Tag Urgente
     Click Element                     ${buscaTags}
-    Wait Until Element Is Visible     ${campoBusca}        ${TIMEOUT}
-    Input Text                        ${campoBusca}        urgente
-    Press Keys                        ${campoBusca}        ENTER
+    Wait Until Element Is Visible     H:\robot-D4S\files\doc-testes.pdf       ${TIMEOUT}
+    Input Text                        H:\robot-D4S\files\doc-testes.pdf       urgente
+    Press Keys                        H:\robot-D4S\files\doc-testes.pdf       ENTER
     Sleep                             2s
     Click Element                     ${btnBusca}
     Wait Until Element Is Visible     ${resultadoBusca}    ${TIMEOUT}

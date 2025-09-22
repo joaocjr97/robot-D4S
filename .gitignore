@@ -1,5 +1,4 @@
 # Arquivos de configuração sensíveis
-config_sensitive.robot
 config_sensitive.py
 config_sensitive.json
 *.env

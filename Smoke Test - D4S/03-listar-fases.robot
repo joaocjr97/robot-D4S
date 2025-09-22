@@ -6,7 +6,8 @@ Resource   config_sensitive.robot
 
 *** Test Cases ***
 Login
-    Open Browser                    ${URL}       chrome
+    Open Browser                    ${URL}       ${BROWSER_HEADLESS}
+    Set Window Size   1920    1080
     Execute Javascript              ${setcookie}
     Wait Until Element Is Visible   ${Email}     ${TIMEOUT}
     Input Text                      ${Email}     ${USERNAME}

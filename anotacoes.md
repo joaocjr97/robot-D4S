@@ -12,19 +12,19 @@ Este guia fornece instruções detalhadas para executar os testes automatizados 
 
 ### Passo a Passo
 
-#### 1. **Navegar até o diretório dos testes**
+#### 1. **Navegar até a raíz do projeto**
 ```powershell
-cd "H:\robot-D4S\Smoke Test - D4S"
+cd "H:\robot-D4S"
 ```
 
-#### 2. **Executar todos os testes da suíte**
+#### 2. **Executar todos os testes da suíte e salvar logs na raiz/results**
 ```powershell
-robot --outputdir results .
+robot --outputdir results "Smoke Test - D4S"
 ```
 
-**Exemplo completo de execução:**
+#### 3. **Executar um teste específico e salvar logs na raiz/results**
 ```powershell
-PS H:\robot-D4S\Smoke Test - D4S> robot --outputdir results .
+robot --outputdir results "Smoke Test - D4S/01-busca-signatario.robot"
 ```
 
 ## 📊 Interpretando os Resultados

@@ -7,7 +7,7 @@ Resource   config_sensitive.robot
 
 *** Test Cases ***
 Login
-    Open Browser                    ${URL}       chrome
+    Open Browser                    ${URL}       ${BROWSER}
     Maximize Browser Window
     Execute Javascript              ${setcookie}
     Wait Until Element Is Visible   ${Email}     ${TIMEOUT}
