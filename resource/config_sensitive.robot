@@ -12,3 +12,7 @@ ${URL}               https://secure.d4sign.com.br/
 
 # Dados de teste específicos
 ${EMAIL_TESTE}       joao.carlos@d4sign.com.br
+
+# Chaves de API
+${TOKEN_API}                   live_edbbbe82a765d29e08d33066fca8187d4d33af4ae5069f63f2532a33e157a3cc
+${CRYPT_KEY}                   live_crypt_986BQliUIFNKCO2ZlDCubKHZkIapJpTA

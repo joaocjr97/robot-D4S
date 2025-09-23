@@ -1,4 +1,0 @@
-robotframework>=6.0
-robotframework-seleniumlibrary>=6.0
-robotframework-faker>=5.0
-robotframework-operatingsystem>=0.5

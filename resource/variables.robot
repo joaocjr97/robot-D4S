@@ -185,3 +185,16 @@ ${checkbox}          //*[@id="select_all"]
 ${botaoAssinarLote}  //a[contains(., 'Assinar em lote')]
 ${modal}             //*[@id="form-assinaturaend"]
 ${senhaContaLote}    //*[@id="senhaConta"]
+
+
+# =============================================================================
+# LISTAGENS-API (API/Listagens-API.robot)
+# =============================================================================
+
+${BASE_URL}                    https://secure.d4sign.com.br/api/v1
+${DOCUMENTS}                   documents
+${LIST_ESPECIFIC_DOCUMENT}     897e47c8-7da2-4113-a4f6-2f2ebb9f21d0
+${LIST_DOCUMENTS_PHASE}        3/status
+${LIST_SAFE}                   safes
+${UUID_SAFE}                   d671be3e-b1f7-42c3-bbda-15ff037c1bec/safe
+${UUID_WEBHOOK}                1c42fc63-4c84-4f9e-a9ad-3052879770fb/webhooks

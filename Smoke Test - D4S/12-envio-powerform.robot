@@ -1,7 +1,7 @@
 *** Settings ***
 Library    SeleniumLibrary
-Resource   variables.robot
-Resource   config_sensitive.robot
+Resource   ../resource/variables.robot
+Resource   ../resource/config_sensitive.robot
 Library    FakerLibrary
 Library    Screenshot
 

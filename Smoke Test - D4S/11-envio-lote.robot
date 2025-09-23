@@ -2,8 +2,8 @@
 Library    SeleniumLibrary
 Library    OperatingSystem
 Library    Process
-Resource   variables.robot
-Resource   config_sensitive.robot
+Resource   ../resource/variables.robot
+Resource   ../resource/config_sensitive.robot
 
 *** Test Cases ***
 Login
