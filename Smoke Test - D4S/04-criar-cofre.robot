@@ -6,8 +6,8 @@ Resource   ../resource/config_sensitive.robot
 
 *** Test Cases ***
 Login
-    Open Browser                    ${URL}       ${BROWSER_HEADLESS}
-    Execute Javascript              ${setcookie}
+    Open Browser    ${URL}    ${BROWSER}
+    Set Window Size    1920    1080
     Wait Until Element Is Visible   ${Email}     ${TIMEOUT}
     Input Text                      ${Email}     ${USERNAME}
     Input Text                      ${Passwd}    ${PASSWORD}
@@ -18,10 +18,11 @@ Login
 Criar Cofre
     Wait Until Element Is Visible            ${CreateNewVault}  ${TIMEOUT}
     Click Element                            ${CreateNewVault}
-    Wait Until Element Is Visible            ${nomecofre}       20s
+    Wait Until Element Is Visible            ${nomecofre}       ${TIMEOUT}
 
     #Gerar nome aleatório para o cofre
     ${palavragerada}=    FakerLibrary.Company
 
     Input Text                              ${nomecofre}        ${palavragerada} 
     Click Button                            ${btnSalvarCofre}
+    Close Browser

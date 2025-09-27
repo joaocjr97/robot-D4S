@@ -8,13 +8,15 @@
 
 # Configurações de navegador
 ${BROWSER}           chrome
-${BROWSER_HEADLESS}  headlesschrome
-${TIMEOUT}           50s
+${BROWSER_HEADLESS}  headlessfirefox
+${TIMEOUT}           60s
+${TIMEOUT240s}       240s
 ${WINDOW_SIZE}       --window-size=1920,1080
 ${CHROME_OPTIONS}    add_argument(--headless),add_argument(--window-size=1920,1080)
 
 # JavaScript para configurações
 ${setcookie}         document.cookie = "contratoazul_language=pt"
+${setcookie2}        d4sign_ai_cofre = "1"
 
 # =============================================================================
 # ELEMENTOS DE LOGIN
@@ -69,6 +71,7 @@ ${assinaturas}       //span[contains(normalize-space(text()), 'AGUARDANDO ASSINA
 ${finalizado}        //span[contains(normalize-space(text()), 'FINALIZADO')]
 ${fase3}             //*[@id="divBtnMoveFase"]/ul/li[5]/a
 ${btnInicio}         //*[@id="page-wrapper"]/div[2]/div[1]/div[1]/a
+${IAmodal}           css:.modal-backdrop.in   
 
 # =============================================================================
 # ENVIO DE DOCUMENTOS (05-envio-desk.robot, 06-envio-cofre.robot)
@@ -160,7 +163,7 @@ ${PowerForm}             //*[@id="page-wrapper"]/div[2]/div[1]/div[3]/div/ul/li[
 ${criarPowerForm}        //*[@id="btnSaveTemplate"]
 ${campoCofrePF}          //*[@id="uuid_cofre"]
 ${selecionarCofrePF}     //*[@id="uuid_cofre"]/option[2]
-${campoTemplate}         //*[@id="uuid-template"]
+${campoTemplate}         //*[@id="uuid-template"]    
 ${selecionarTemplate}    //*[@id="meus-templates"]/option[338]
 ${nomeDocumento}         //*[@id="nome_documento"]
 ${botaoContinuar}        //*[@id="docButton"]
@@ -198,3 +201,5 @@ ${LIST_DOCUMENTS_PHASE}        3/status
 ${LIST_SAFE}                   safes
 ${UUID_SAFE}                   d671be3e-b1f7-42c3-bbda-15ff037c1bec/safe
 ${UUID_WEBHOOK}                1c42fc63-4c84-4f9e-a9ad-3052879770fb/webhooks
+${CI_SESSION}                  harpa7oriaddlltqtain0bje8h3h5fqo
+${UUID_SAFE1}                  27431c09-bf98-418b-8727-1abfabae28c9

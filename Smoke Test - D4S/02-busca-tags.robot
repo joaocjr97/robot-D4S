@@ -5,10 +5,8 @@ Resource   ../resource/config_sensitive.robot
 
 *** Test Cases ***
 Login
-    Open Browser                    ${URL}       ${BROWSER_HEADLESS}    
-    Maximize Browser Window
-    Execute Javascript              ${setcookie}    
-# Define o cookie para evitar o popup de escolha de idioma
+    Open Browser    ${URL}    ${BROWSER_HEADLESS}
+    Set Window Size    1920    1080
     Wait Until Element Is Visible   ${Email}     ${TIMEOUT}
     Input Text                      ${Email}     ${USERNAME}
     Input Text                      ${Passwd}    ${PASSWORD}
@@ -19,10 +17,10 @@ Login
 
 Busca de Tag Urgente
     Click Element                     ${buscaTags}
-    Wait Until Element Is Visible     H:\robot-D4S\files\doc-testes.pdf       ${TIMEOUT}
-    Input Text                        H:\robot-D4S\files\doc-testes.pdf       urgente
-    Press Keys                        H:\robot-D4S\files\doc-testes.pdf       ENTER
-    Sleep                             2s
+    Wait Until Element Is Visible     ${campoBusca}        ${TIMEOUT}
+    Input Text                        ${campoBusca}        urgente
+    Press Keys                        ${campoBusca}        ENTER
+    Sleep                                                  2s
     Click Element                     ${btnBusca}
     Wait Until Element Is Visible     ${resultadoBusca}    ${TIMEOUT}
     Click Element                     ${linkDocumento}
@@ -30,3 +28,4 @@ Busca de Tag Urgente
     Wait Until Element Is Visible     ${viewblob}          ${TIMEOUT}
     Click Element                     ${tagViewblob}
     Wait Until Element Is Visible     ${urgenteTag}        ${TIMEOUT}
+    Close Browser

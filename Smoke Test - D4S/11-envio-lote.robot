@@ -7,9 +7,8 @@ Resource   ../resource/config_sensitive.robot
 
 *** Test Cases ***
 Login
-    Open Browser                    ${URL}       ${BROWSER}
-    Maximize Browser Window
-    Execute Javascript              ${setcookie}
+    Open Browser    ${URL}    ${BROWSER_HEADLESS}
+    Set Window Size    1920    1080
     Wait Until Element Is Visible   ${Email}     ${TIMEOUT}
     Input Text                      ${Email}     ${USERNAME}
     Input Text                      ${Passwd}    ${PASSWORD}
@@ -29,24 +28,25 @@ Envio em Lote
     Click Element                           ${tipoDoc}
     Click Element                           ${tempHTML}
     Click Element                           ${btnSalvarPf}
-    Sleep                                   ${TIMEOUT}
+    Sleep                                   2s
     Click Element                           ${btnOpcao}
     Wait Until Element Is Visible           ${selecionarDoc}
     Click Element                           ${selecionarDoc}
-    Sleep                                   ${TIMEOUT}
+    Sleep                                   2s
     ${ABSOLUTE_PATH}=    Normalize Path     ${RELATIVE_PATH_LOTE}
     Choose File                             ${fileupload}        ${ABSOLUTE_PATH}
-    Sleep                                   ${TIMEOUT}
+    Sleep                                   5s
     Press Keys                              ${sucesso}           ESC
     Reload Page
     Click Element                           ${btnOpcao}
     Wait Until Element Is Visible           ${processamento}
     Click Element                           ${processamento}
-    Sleep                                   ${TIMEOUT}
+    Sleep                                   2s
     Wait Until Element Is Visible           ${campoSenha}
     Input Text                              ${campoSenha}        ${PASSWORD}
     Click Element                           ${btnFim}
     Wait Until Page Contains Element        ${tagProcessando}
     Sleep                                                        120s
     Reload Page
-    Wait Until Page Contains Element        ${tagProcessado}     10s
+    Wait Until Page Contains Element        ${tagProcessado}     ${TIMEOUT}
+    Close Browser

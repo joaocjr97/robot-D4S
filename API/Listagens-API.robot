@@ -9,6 +9,14 @@ Header Json
     ${headers}=    Create Dictionary    Content-Type=application/json    tokenAPI=${TOKEN_API}    cryptKey=${CRYPT_KEY}
     RETURN    ${headers}
 
+Fazer Upload PDF D4sign
+    [Arguments]    ${file_path}    ${uuid_safe}    ${token}
+    &{headers}=    Create Dictionary    tokenAPI=${token}
+    &{files}=      Create Dictionary    File=${file_path}
+    Create Session    d4sign    ${BASE_URL}    headers=${headers}
+    ${response}=   Post On Session    d4sign    /documents/${uuid_safe}/upload    files=${files}
+    RETURN    ${response}
+
 Log Response As Formatted JSON
     [Arguments]    ${response}
     # Transforma o texto da resposta da API (JSON em string) em um dicionário/lista Python
@@ -103,4 +111,22 @@ Log Response Time
     Log To Console    Tempo de resposta: ${tempo} segundos
     Log    Tempo de resposta: ${tempo} segundos
     Status Should Be    200    ${response}
+    Log Response As Formatted JSON    ${response}
+
+# =============================================================================
+
+# Post - Upload de documentos
+
+Upload Documento Principal
+    [Documentation]    Faz upload de um PDF para o endpoint da D4Sign.
+    ${headers}=    Create Dictionary    tokenAPI=${TOKEN_API}
+    &{files}=      Create Dictionary    File=${RELATIVE_PATH}
+    # Se quiser enviar uuid_folder e workflow:
+    &{data}=       Create Dictionary    uuid_folder=    workflow=
+    Create Session    d4sign    ${BASE_URL}    headers=${headers}
+    ${response}=   Post On Session    d4sign    /documents/${UUID_SAFE1}/upload    files=${files}    data=${data}
+    Log    Status: ${response.status_code}
+    Log    Body: ${response.text}
+    Status Should Be    200    ${response}
+    # Se esperar JSON e quiser bonitinho:
     Log Response As Formatted JSON    ${response}
