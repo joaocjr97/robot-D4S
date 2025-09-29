@@ -203,3 +203,28 @@ ${UUID_SAFE}                   d671be3e-b1f7-42c3-bbda-15ff037c1bec/safe
 ${UUID_WEBHOOK}                1c42fc63-4c84-4f9e-a9ad-3052879770fb/webhooks
 ${CI_SESSION}                  harpa7oriaddlltqtain0bje8h3h5fqo
 ${UUID_SAFE1}                  27431c09-bf98-418b-8727-1abfabae28c9
+${MIME_TYPE}                   application/pdf   
+${NOME}                        Documento Base64 API
+${NOME_HASH}                   Documento Hash API
+# =============================================================================
+# CONFIGURAÇÕES DE PINS PARA DOCUMENTOS
+# =============================================================================
+${PAGE_WIDTH}                  794
+${PAGE_HEIGHT}                 1123
+${PAGE}                        1
+
+# Pin 1 - Assinatura (canto superior esquerdo)
+${POS_X_0}                     100
+${POS_Y_0}                     150
+${TYPE_0}                      0  # 0 assinatura, 1 rubrica, 2 selo
+
+# Pin 2 - Rubrica (centro)
+${POS_X_1}                     397
+${POS_Y_1}                     300
+${TYPE_1}                      1
+
+# Pin 3 - Selo (canto inferior direito)
+${POS_X_2}                     600
+${POS_Y_2}                     500
+${TYPE_2}                      2
+${UUID_PINS}                   1e9e4c4b-0b97-47d3-b7a6-59c5e587a089

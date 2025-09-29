@@ -1,36 +1,22 @@
-# Arquivos de configuração sensíveis
-config_sensitive.py
-config_sensitive.json
-*.env
-.env
+# Robot Framework - Logs e relatórios
+log.html
+output.xml
+report.html
+interactive_console_output.xml
 
-# Arquivos de log e resultados
-results/
-*.log
-*.html
-*.xml
-
-# Screenshots
-*.png
-*.jpg
-*.jpeg
+# Pasta de resultados (manter estrutura, mas ignorar conteúdo)
+results/*.html
+results/*.xml
 
 # Arquivos temporários
 *.tmp
 *.temp
-__pycache__/
-*.pyc
-*.pyo
 
-# IDEs
-.vscode/
-.idea/
-*.swp
-*.swo
+# Arquivos de configuração sensíveis (se não estiverem em config_sensitive.robot)
+# config_sensitive.robot
 
-# Sistema operacional
-.DS_Store
-Thumbs.db
+# Logs do sistema
+*.log
 
 # Arquivos de backup
 *.bak
