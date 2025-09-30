@@ -228,3 +228,53 @@ ${POS_X_2}                     600
 ${POS_Y_2}                     500
 ${TYPE_2}                      2
 ${UUID_PINS}                   1e9e4c4b-0b97-47d3-b7a6-59c5e587a089
+# =============================================================================
+# CONFIGURAÇÕES DE TEMPLATE WORD
+# =============================================================================
+${template_id}                   MTkxMTEz
+${nome_template_word}            Template Word de Testes QA.docx
+${nome_razao_social}             TechTECH Soluções em Tecnologia Ltda.
+${PF_PF}                         Pessoa Jurídica
+${CNPJ_CPF}                      25.999.888/0001-77
+${rua_numero}                    Alameda Santos, 2250, 10º andar
+${bairro}                        Cerqueira César
+${cidade}                        São Paulo
+${Estado_UF}                     SP
+${cep}                           01419-002
+${RAZAOSOCIAL_NOME}              InovaTech Soluções em Tecnologia Ltda.
+${tipopjoupf}                    PJ
+${nomerepresentante}             Fernanda Costa Ribeiro
+${cpfrepresentante}              888.777.666-55
+${veiculo1}                      Veículo Leve
+${qtdveic1}                      10
+${Valor_Veic1}                   320,00
+${veiculo2}                      Veículo Utilitário
+${qtdveic2}                      5
+${Valor_Veic2}                   450,00
+${veiculo3}                      Motocicleta Executiva
+${qtdveic3}                      8
+${Valor_Veic3}                   210,00
+${datainicialcontrato}           29 de setembro de 2025
+# =============================================================================
+# CONFIGURAÇÕES DE TEMPLATE HTML
+# =============================================================================
+${TEMPLATE_ID_HTML}       NjMyMTg=
+${NOME_DOC_HTML}          Relatório de QA - Temp HTML
+${MARCA_VAR}              Carro
+${LARANJA_VAR}            Fruta
+${COR_VAR}                Azul
+${TRUEFALSE_VAR}          true
+${RUA_VAR}                Avenida Paulista
+${LUGARES_VAR}            Parque Ibirapuera
+${RESTAURANT_VAR}         Restaurante Fictício
+# =============================================================================
+# CONFIGURAÇÕES DE SIGNATÁRIOS
+# =============================================================================
+${EMAIL_INICIAL}     primeiro.email.teste@robot.com
+${EMAIL_ALTERADO}    signatario.alterado@teste.com
+${WHATSAPP_TESTE}    5511954976905
+# ==============================================================================
+# DADOS DE TESTE PARA O WEBHOOK
+# ==============================================================================
+${UUID_DOC_WEBHOOK}      0eeb2925-382e-4e64-a072-8be770f786d3
+${URL_WEBHOOK}           https://superteste.requestcatcher.com

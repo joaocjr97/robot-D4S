@@ -38,6 +38,107 @@ Upload Anexo PDF
     Call Method    ${file_obj}    close
     RETURN    ${response}
 
+Gerar Documento Via Template Word
+    [Documentation]    Cria um documento a partir de um template word.
+    # Lista completa de argumentos necessários para a requisição
+    [Arguments]
+    ...    ${TOKEN_API}
+    ...    ${CRYPT_KEY}
+    ...    ${UUID_SAFE1}
+    ...    ${template_id}
+    ...    ${nome_template_word}
+    # Argumentos que preenchem as variáveis do template
+    ...    ${nome_razao_social}    ${PF_PF}                  ${CNPJ_CPF}
+    ...    ${rua_numero}           ${bairro}                 ${cidade}
+    ...    ${Estado_UF}            ${cep}                    ${qtdveic1}
+    ...    ${veiculo1}             ${Valor_Veic1}            ${qtdveic2}
+    ...    ${veiculo2}             ${Valor_Veic2}            ${qtdveic3}
+    ...    ${veiculo3}             ${Valor_Veic3}            ${tipopjoupf}
+    ...    ${datainicialcontrato}  ${RAZAOSOCIAL_NOME}       
+    ...    ${nomerepresentante}    ${cpfrepresentante}
+    # Cria o dicionário de Headers
+    &{headers}=    Create Dictionary
+    ...    tokenAPI=${TOKEN_API}
+    ...    cryptKey=${CRYPT_KEY}
+    ...    Content-Type=application/json
+    ...    Accept=application/json
+    # Cria o dicionário interno com as variáveis do template
+    &{dados_template}=    Create Dictionary
+    ...    nome_razao_social=${nome_razao_social}
+    ...    PF_PF=${PF_PF}
+    ...    CNPJ_CPF=${CNPJ_CPF}
+    ...    rua_numero=${rua_numero}
+    ...    bairro=${bairro}
+    ...    cidade=${cidade}
+    ...    Estado_UF=${Estado_UF}
+    ...    cep=${cep}
+    ...    veiculo1=${veiculo1}
+    ...    Valor_Veic1=${Valor_Veic1}
+    ...    qtdveic1=${qtdveic1}
+    ...    veiculo2=${veiculo2}
+    ...    Valor_Veic2=${Valor_Veic2}
+    ...    qtdveic2=${qtdveic2}
+    ...    veiculo3=${veiculo3}
+    ...    Valor_Veic3=${Valor_Veic3}
+    ...    qtdveic3=${qtdveic3}
+    ...    datainicialcontrato=${datainicialcontrato}
+    ...    RAZAOSOCIAL_NOME=${RAZAOSOCIAL_NOME}
+    ...    tipopjoupf=${tipopjoupf}
+    ...    nomerepresentante=${nomerepresentante}
+    ...    cpfrepresentante=${cpfrepresentante}
+    # Cria o objeto 'templates' que envolve os dados, usando o template_id como chave
+    &{templates_obj}=    Create Dictionary    ${template_id}=&{dados_template}
+    &{body}=    Create Dictionary
+    ...    name_document=${nome_template_word}
+    ...    templates=&{templates_obj}
+    Delete All Sessions
+    Create Session    gerar_template_word    ${BASE_URL}    headers=&{headers}
+    ${response}=    Post On Session
+    ...    gerar_template_word
+    ...    /documents/${UUID_SAFE1}/makedocumentbytemplateword
+    ...    json=&{body}
+    RETURN    ${response}
+
+Gerar Documento Via Template HTML
+    [Documentation]    Cria um documento a partir de um template HTML.
+    [Arguments]
+    ...    ${TOKEN_API}
+    ...    ${CRYPT_KEY}
+    ...    ${UUID_SAFE1}
+    ...    ${template_id_html}
+    ...    ${nome_documento_html}
+    ...    ${marca}
+    ...    ${laranja}
+    ...    ${cor}
+    ...    ${trueFALSE}
+    ...    ${rua}
+    ...    ${lugares}
+    ...    ${restaurant}
+    &{headers}=    Create Dictionary
+    ...    tokenAPI=${TOKEN_API}
+    ...    cryptKey=${CRYPT_KEY}
+    ...    Content-Type=application/json
+    ...    Accept=application/json
+    &{dados_template}=    Create Dictionary
+    ...    marca=${marca}
+    ...    laranja=${laranja}
+    ...    cor=${cor}
+    ...    trueFALSE=${trueFALSE}
+    ...    rua=${rua}
+    ...    lugares=${lugares}
+    ...    restaurant=${restaurant}
+    &{templates_obj}=    Create Dictionary    ${template_id_html}=&{dados_template}
+    &{body}=    Create Dictionary
+    ...    name_document=${nome_documento_html}
+    ...    templates=&{templates_obj}
+    Delete All Sessions
+    Create Session    gerar_template_html    ${BASE_URL}    headers=&{headers}
+    ${response}=    Post On Session
+    ...    gerar_template_html
+    ...    /documents/${UUID_SAFE1}/makedocumentbytemplate
+    ...    json=&{body}
+    RETURN    ${response}
+
 Adicionar Pins
     [Arguments]    ${UUID_DOCUMENT}    ${TOKEN_API}    ${CRYPT_KEY}    ${EMAIL_TESTE}    ${PAGE_WIDTH}    ${PAGE_HEIGHT}    ${PAGE}    ${POS_X}    ${POS_Y}    ${TYPE}
     &{headers}=    Create Dictionary    tokenAPI=${TOKEN_API}    cryptKey=${CRYPT_KEY}    Content-Type=application/json    Accept=application/json
@@ -55,6 +156,30 @@ Adicionar Pins
     Delete All Sessions
     Create Session    add_pin    ${BASE_URL}    headers=${headers}
     ${response}=    Post On Session    add_pin    /documents/${UUID_DOCUMENT}/addpins    json=${body}
+    RETURN    ${response}
+
+Replicar Pin Em Todas As Paginas
+    [Documentation]    Envia uma requisição para replicar uma posição de assinatura em todas as páginas de um documento.
+    [Arguments]    ${UUID_DOCUMENT}    ${TOKEN_API}    ${CRYPT_KEY}    ${EMAIL_TESTE}    ${PAGE_WIDTH}    ${PAGE_HEIGHT}    ${POS_X}    ${POS_Y}    ${TYPE}
+    &{headers}=    Create Dictionary
+    ...    tokenAPI=${TOKEN_API}
+    ...    cryptKey=${CRYPT_KEY}
+    ...    Content-Type=application/json
+    ...    Accept=application/json
+    &{pin_details}=    Create Dictionary
+    ...    email=${EMAIL_TESTE}
+    ...    page_height=${PAGE_HEIGHT}
+    ...    page_width=${PAGE_WIDTH}
+    ...    position_x=${POS_X}
+    ...    position_y=${POS_Y}
+    ...    type=${TYPE}
+    &{body}=    Create Dictionary    pins=&{pin_details}
+    Delete All Sessions
+    Create Session    replicate_pins    ${BASE_URL}    headers=&{headers}
+    ${response}=    Post On Session
+    ...    replicate_pins
+    ...    /documents/${UUID_DOCUMENT}/addpinswithreplics
+    ...    json=&{body}
     RETURN    ${response}
 
 Listar Pins
@@ -107,26 +232,45 @@ Calculate SHA512 Hash
     RETURN    ${sha512_hash}
 
 Adicionar Signatarios
-    [Arguments]    ${UUID_DOCUMENT}    ${TOKEN_API}    ${CRYPT_KEY}
+    [Arguments]    ${UUID_DOCUMENT}    ${TOKEN_API}    ${CRYPT_KEY}    @{lista_de_signatarios}
     &{headers}=    Create Dictionary    tokenAPI=${TOKEN_API}    cryptKey=${CRYPT_KEY}    Content-Type=application/json    Accept=application/json
-    &{signer}=    Create Dictionary
-    ...    email=${EMAIL_TESTE}
-    ...    act=1
-    ...    foreign=0
-    ...    certificadoicpbr=0
-    ...    assinatura_presencial=0
-    ...    docauth=0
-    ...    docauthandselfie=0
-    ...    embed_methodauth=
-    ...    embed_smsnumber=
-    ...    upload_allow=
-    ...    upload_obs=
-    ...    whatsapp_number=
-    @{signers}=    Create List    ${signer}
-    &{body}=    Create Dictionary    signers=${signers}
+    &{body}=    Create Dictionary    signers=${lista_de_signatarios}
     Delete All Sessions
     Create Session    d4sign_signers    ${BASE_URL}    headers=${headers}
     ${response}=    Post On Session    d4sign_signers    /documents/${UUID_DOCUMENT}/createlist    json=${body}
+    RETURN    ${response}
+
+Alterar Email Do Signatario
+    [Documentation]    Atualiza o e-mail de um signatário existente em um documento.
+    [Arguments]    ${UUID_DOCUMENT}    ${TOKEN_API}    ${CRYPT_KEY}    ${KEY_SIGNER}    ${EMAIL_TESTE}    ${EMAIL_NOVO}
+    &{headers}=    Create Dictionary
+    ...    tokenAPI=${TOKEN_API}
+    ...    cryptKey=${CRYPT_KEY}
+    ...    Content-Type=application/json
+    ...    Accept=application/json
+    &{body}=    Create Dictionary
+    ...    email-before=${EMAIL_TESTE}
+    ...    email-after=${EMAIL_NOVO}
+    ...    key-signer=${KEY_SIGNER}
+    Delete All Sessions
+    Create Session    change_email    ${BASE_URL}    headers=&{headers}
+    ${response}=    Post On Session    change_email    /documents/${UUID_DOCUMENT}/changeemail    json=&{body}
+    RETURN    ${response}
+
+Remover Signatario Do Documento
+    [Documentation]    Remove um signatário de um documento usando o e-mail e a key-signer.
+    [Arguments]    ${UUID_DOCUMENT}    ${TOKEN_API}    ${CRYPT_KEY}    ${KEY_SIGNER}    ${EMAIL_ALTERADO}
+    &{headers}=    Create Dictionary
+    ...    tokenAPI=${TOKEN_API}
+    ...    cryptKey=${CRYPT_KEY}
+    ...    Content-Type=application/json
+    ...    Accept=application/json
+    &{body}=    Create Dictionary
+    ...    email-signer=${EMAIL_ALTERADO}
+    ...    key-signer=${KEY_SIGNER}
+    Delete All Sessions
+    Create Session    remove_signer    ${BASE_URL}    headers=&{headers}
+    ${response}=    Post On Session    remove_signer    /documents/${UUID_DOCUMENT}/removeemaillist    json=&{body}
     RETURN    ${response}
 
 Enviar Documento Para Assinatura
@@ -136,6 +280,24 @@ Enviar Documento Para Assinatura
     Delete All Sessions
     Create Session    d4sign_send    ${BASE_URL}    headers=${headers}
     ${response}=   Post On Session    d4sign_send    /documents/${UUID_DOCUMENT}/sendtosigner    json=${body}
+    RETURN    ${response}
+
+Adicionar Webhook Ao Documento
+    [Documentation]    Envia uma requisição para cadastrar uma URL de webhook em um documento.
+    [Arguments]    ${UUID_DOCUMENT}    ${TOKEN_API}    ${CRYPT_KEY}    ${WEBHOOK_URL}
+    &{headers}=    Create Dictionary
+    ...    tokenAPI=${TOKEN_API}
+    ...    cryptKey=${CRYPT_KEY}
+    ...    Content-Type=application/json
+    ...    Accept=application/json
+    &{body}=    Create Dictionary
+    ...    url=${WEBHOOK_URL}
+    Delete All Sessions
+    Create Session    add_webhook    ${BASE_URL}    headers=&{headers}
+    ${response}=    Post On Session
+    ...    add_webhook
+    ...    /documents/${UUID_DOCUMENT}/webhooks
+    ...    json=&{body}
     RETURN    ${response}
 
 Log Response As Formatted JSON

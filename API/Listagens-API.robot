@@ -1,6 +1,7 @@
 *** Settings ***
 Library    RequestsLibrary
 Library    String
+Library    JSONLibrary
 Resource   ../resource/variables.robot
 Resource   ../resource/config_sensitive.robot
 Resource   ../resource/keywords.robot
