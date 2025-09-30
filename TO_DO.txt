@@ -1,0 +1,11 @@
+FASE FINAL:
+
+REFATORAR
+
+AUTOMATIZAR
+
+Remover sleep dos testes
+
+Revisar as tags e testar e ver os logs
+
+Retestar

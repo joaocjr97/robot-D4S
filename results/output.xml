@@ -1,253 +1,385 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.3.2 (Python 3.13.7 on win32)" generated="2025-09-30T00:12:06.632497" rpa="false" schemaversion="5">
+<robot generator="Robot 7.3.2 (Python 3.13.7 on win32)" generated="2025-09-30T20:35:16.250644" rpa="false" schemaversion="5">
 <suite id="s1" name="Robot" source="C:\Users\joao.carlos_d4sign\Desktop\Robot">
-<suite id="s1-s1" name="API" source="C:\Users\joao.carlos_d4sign\Desktop\Robot\API">
-<suite id="s1-s1-s1" name="Posts-API" source="C:\Users\joao.carlos_d4sign\Desktop\Robot\API\Posts-API.robot">
-<test id="s1-s1-s1-t1" name="11 - Criar documento Template HTML" line="362">
-<kw name="Gerar Documento Via Template HTML" owner="keywords">
-<kw name="Create Dictionary" owner="BuiltIn">
-<msg time="2025-09-30T00:12:07.179639" level="INFO">&amp;{headers} = { tokenAPI=live_edbbbe82a765d29e08d33066fca8187d4d33af4ae5069f63f2532a33e157a3cc | cryptKey=live_crypt_986BQliUIFNKCO2ZlDCubKHZkIapJpTA | Content-Type=application/json | Accept=application/json }</msg>
-<var>&amp;{headers}</var>
-<arg>tokenAPI=${TOKEN_API}</arg>
-<arg>cryptKey=${CRYPT_KEY}</arg>
-<arg>Content-Type=application/json</arg>
-<arg>Accept=application/json</arg>
-<doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<status status="PASS" start="2025-09-30T00:12:07.178890" elapsed="0.001076"/>
+<suite id="s1-s1" name="Tests" source="C:\Users\joao.carlos_d4sign\Desktop\Robot\tests">
+<suite id="s1-s1-s1" name="Smoke" source="C:\Users\joao.carlos_d4sign\Desktop\Robot\tests\smoke">
+<suite id="s1-s1-s1-s1" name="Templates" source="C:\Users\joao.carlos_d4sign\Desktop\Robot\tests\smoke\templates">
+<suite id="s1-s1-s1-s1-s1" name="10-Envio-Template-Word" source="C:\Users\joao.carlos_d4sign\Desktop\Robot\tests\smoke\templates\10-envio-template-word.robot">
+<kw name="Test Setup" owner="ui_keywords" type="SETUP">
+<kw name="Set Log Level" owner="BuiltIn">
+<msg time="2025-09-30T20:35:16.970437" level="DEBUG">Log level changed from INFO to TRACE.</msg>
+<msg time="2025-09-30T20:35:16.970648" level="TRACE">Return: 'INFO'</msg>
+<arg>${LOG_LEVEL}</arg>
+<doc>Sets the log threshold to the specified level.</doc>
+<status status="PASS" start="2025-09-30T20:35:16.969888" elapsed="0.000905"/>
 </kw>
-<kw name="Create Dictionary" owner="BuiltIn">
-<msg time="2025-09-30T00:12:07.181262" level="INFO">&amp;{dados_template} = { marca=Carro | laranja=Fruta | cor=Azul | trueFALSE=true | rua=Avenida Paulista | lugares=Parque Ibirapuera | restaurant=Restaurante Fictício }</msg>
-<var>&amp;{dados_template}</var>
-<arg>marca=${marca}</arg>
-<arg>laranja=${laranja}</arg>
-<arg>cor=${cor}</arg>
-<arg>trueFALSE=${trueFALSE}</arg>
-<arg>rua=${rua}</arg>
-<arg>lugares=${lugares}</arg>
-<arg>restaurant=${restaurant}</arg>
-<doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<status status="PASS" start="2025-09-30T00:12:07.180246" elapsed="0.001344"/>
+<kw name="Set Log Level" owner="BuiltIn">
+<msg time="2025-09-30T20:35:16.971304" level="TRACE">Arguments: [ 'NONE' ]</msg>
+<arg>NONE</arg>
+<doc>Sets the log threshold to the specified level.</doc>
+<status status="PASS" start="2025-09-30T20:35:16.971005" elapsed="0.000604"/>
 </kw>
-<kw name="Create Dictionary" owner="BuiltIn">
-<msg time="2025-09-30T00:12:07.182481" level="INFO">&amp;{templates_obj} = { NjMyMTg=={'marca': 'Carro', 'laranja': 'Fruta', 'cor': 'Azul', 'trueFALSE': 'true', 'rua': 'Avenida Paulista', 'lugares': 'Parque Ibirapuera', 'restaurant': 'Restaurante Fictício'} }</msg>
-<var>&amp;{templates_obj}</var>
-<arg>${template_id_html}=&amp;{dados_template}</arg>
-<doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<status status="PASS" start="2025-09-30T00:12:07.181854" elapsed="0.001042"/>
+<kw name="Set Variable If" owner="BuiltIn">
+<var>${url}</var>
+<arg>'${ENVIRONMENT}'=='dev'</arg>
+<arg>${URL_DEV}</arg>
+<arg>'${ENVIRONMENT}'=='homol'</arg>
+<arg>${URL_HOMOL}</arg>
+<arg>'${ENVIRONMENT}'=='staging'</arg>
+<arg>${URL_STAGING}</arg>
+<arg>'${ENVIRONMENT}'=='prod'</arg>
+<arg>${URL_PROD}</arg>
+<arg>${URL_PROD}</arg>
+<doc>Sets variable based on the given condition.</doc>
+<status status="PASS" start="2025-09-30T20:35:16.971797" elapsed="0.000857"/>
 </kw>
-<kw name="Create Dictionary" owner="BuiltIn">
-<msg time="2025-09-30T00:12:07.184049" level="INFO">&amp;{body} = { name_document=Relatório de QA - Temp HTML | templates={'NjMyMTg=': {'marca': 'Carro', 'laranja': 'Fruta', 'cor': 'Azul', 'trueFALSE': 'true', 'rua': 'Avenida Paulista', 'lugares': 'Parque Ibirapuera...</msg>
-<var>&amp;{body}</var>
-<arg>name_document=${nome_documento_html}</arg>
-<arg>templates=&amp;{templates_obj}</arg>
-<doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<status status="PASS" start="2025-09-30T00:12:07.183130" elapsed="0.001401"/>
+<kw name="Set Suite Variable" owner="BuiltIn">
+<arg>${URL}</arg>
+<arg>${url}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<status status="PASS" start="2025-09-30T20:35:16.973119" elapsed="0.001800"/>
 </kw>
-<kw name="Delete All Sessions" owner="RequestsLibrary">
-<msg time="2025-09-30T00:12:07.185363" level="INFO">Deleting All Sessions</msg>
-<doc>Removes all the session objects</doc>
-<status status="PASS" start="2025-09-30T00:12:07.184893" elapsed="0.000778"/>
+<kw name="Set Variable If" owner="BuiltIn">
+<var>${timeout}</var>
+<arg>'${ENVIRONMENT}'=='dev'</arg>
+<arg>${TIMEOUT_DEV}</arg>
+<arg>'${ENVIRONMENT}'=='homol'</arg>
+<arg>${TIMEOUT_STAGING}</arg>
+<arg>'${ENVIRONMENT}'=='staging'</arg>
+<arg>${TIMEOUT_STAGING}</arg>
+<arg>'${ENVIRONMENT}'=='prod'</arg>
+<arg>${TIMEOUT_PROD}</arg>
+<arg>${TIMEOUT_STAGING}</arg>
+<doc>Sets variable based on the given condition.</doc>
+<status status="PASS" start="2025-09-30T20:35:16.975452" elapsed="0.000938"/>
 </kw>
-<kw name="Create Session" owner="RequestsLibrary">
-<msg time="2025-09-30T00:12:07.186440" level="INFO">Creating Session using : alias=gerar_template_html, url=https://secure.d4sign.com.br/api/v1, headers={'tokenAPI': 'live_edbbbe82a765d29e08d33066fca8187d4d33af4ae5069f63f2532a33e157a3cc', 'cryptKey': 'live_crypt_986BQliUIFNKCO2ZlDCubKHZkIapJpTA', 'Content-Type': 'application/json', 'Accept': 'application/json'},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
-<arg>gerar_template_html</arg>
-<arg>${BASE_URL}</arg>
-<arg>headers=&amp;{headers}</arg>
-<doc>Create Session: create a HTTP session to a server</doc>
-<status status="PASS" start="2025-09-30T00:12:07.185862" elapsed="0.001244"/>
+<kw name="Set Suite Variable" owner="BuiltIn">
+<arg>${TIMEOUT}</arg>
+<arg>${timeout}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<status status="PASS" start="2025-09-30T20:35:16.976629" elapsed="0.000485"/>
 </kw>
-<kw name="POST On Session" owner="RequestsLibrary">
-<msg time="2025-09-30T00:12:15.901382" level="INFO">POST Request : url=https://secure.d4sign.com.br/api/v1/documents/27431c09-bf98-418b-8727-1abfabae28c9/makedocumentbytemplate 
- path_url=/api/v1/documents/27431c09-bf98-418b-8727-1abfabae28c9/makedocumentbytemplate 
- headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'tokenAPI': 'live_edbbbe82a765d29e08d33066fca8187d4d33af4ae5069f63f2532a33e157a3cc', 'cryptKey': 'live_crypt_986BQliUIFNKCO2ZlDCubKHZkIapJpTA', 'Content-Type': 'application/json', 'Content-Length': '258'} 
- body=b'{"name_document": "Relat\\u00f3rio de QA - Temp HTML", "templates": {"NjMyMTg=": {"marca": "Carro", "laranja": "Fruta", "cor": "Azul", "trueFALSE": "true", "rua": "Avenida Paulista", "lugares": "Parque Ibirapuera", "restaurant": "Restaurante Fict\\u00edcio"}}}' 
- </msg>
-<msg time="2025-09-30T00:12:15.901771" level="INFO">POST Response : url=https://secure.d4sign.com.br/api/v1/documents/27431c09-bf98-418b-8727-1abfabae28c9/makedocumentbytemplate 
- status=200, reason=OK 
- headers={'Date': 'Tue, 30 Sep 2025 03:12:16 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '67', 'Connection': 'keep-alive', 'Set-Cookie': 'AWSALBTG=CtBEQVJCxxwMoEOdNIIhC7wNskrRtsW4QjqzJYHVM69p58M1Fua+zH129VMQgrkkbzMys7l9bVJzPkQxKjQafEUj0tY2EeSEB4Ot+fkJnFKJ4+Lrsc1mRaxulCIdfC04WlPa1B4IbTj6sx5K0ma54+Rhp78FjuNZ6jgdTNKZ38FEtN6cIQU=; Expires=Tue, 07 Oct 2025 03:12:07 GMT; Path=/, AWSALBTGCORS=CtBEQVJCxxwMoEOdNIIhC7wNskrRtsW4QjqzJYHVM69p58M1Fua+zH129VMQgrkkbzMys7l9bVJzPkQxKjQafEUj0tY2EeSEB4Ot+fkJnFKJ4+Lrsc1mRaxulCIdfC04WlPa1B4IbTj6sx5K0ma54+Rhp78FjuNZ6jgdTNKZ38FEtN6cIQU=; Expires=Tue, 07 Oct 2025 03:12:07 GMT; Path=/; SameSite=None; Secure, AWSALB=qe+RfGEXoZqc0jvANMHDUgzGUhSRbPxdB4Ex7U/MNPnq6JGpnNGIKctbPeUdi5uEmM0zWhB82WEZoODHG8udxxsfkiPJpy5qfobvHIKODlf5rgH2x+UYOp0xQC83; Expires=Tue, 07 Oct 2025 03:12:07 GMT; Path=/, AWSALBCORS=qe+RfGEXoZqc0jvANMHDUgzGUhSRbPxdB4Ex7U/MNPnq6JGpnNGIKctbPeUdi5uEmM0zWhB82WEZoODHG8udxxsfkiPJpy5qfobvHIKODlf5rgH2x+UYOp0xQC83; Expires=Tue, 07 Oct 2025 03:12:07 GMT; Path=/; SameSite=None; Secure, ci_session=21np6ocucp70b3hehbm713i31i1r3e9j; expires=Tue, 30-Sep-2025 05:12:15 GMT; Max-Age=7200; path=/; secure; HttpOnly', 'Server': 'Apache/2.4.41 (Ubuntu)', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains', 'X-Content-Type-Options': 'nosniff', 'Expires': 'Thu, 19 Nov 1981 08:52:00 GMT', 'Cache-Control': 'no-store, no-cache, must-revalidate', 'Pragma': 'no-cache', 'X-XSS-Protection': '1; mode=block'} 
- body={"message":"success","uuid":"f66aff56-8e89-43a3-926f-8e506ce84d01"} 
- </msg>
-<msg time="2025-09-30T00:12:15.902011" level="INFO">C:\Users\joao.carlos_d4sign\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'secure.d4sign.com.br'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
-  warnings.warn(</msg>
-<msg time="2025-09-30T00:12:15.902655" level="INFO">${response} = &lt;Response [200]&gt;</msg>
-<var>${response}</var>
-<arg>gerar_template_html</arg>
-<arg>/documents/${UUID_SAFE1}/makedocumentbytemplate</arg>
-<arg>json=&amp;{body}</arg>
-<doc>Sends a POST request on a previously created HTTP Session.</doc>
-<status status="PASS" start="2025-09-30T00:12:07.187313" elapsed="8.715505"/>
+<kw name="Set Log Level" owner="BuiltIn">
+<arg>${LOG_LEVEL}</arg>
+<doc>Sets the log threshold to the specified level.</doc>
+<status status="PASS" start="2025-09-30T20:35:16.977283" elapsed="0.000456"/>
 </kw>
-<return>
-<value>${response}</value>
-<status status="PASS" start="2025-09-30T00:12:15.902965" elapsed="0.000446"/>
-</return>
-<msg time="2025-09-30T00:12:15.903697" level="INFO">${response} = &lt;Response [200]&gt;</msg>
-<var>${response}</var>
-<arg>${TOKEN_API}</arg>
-<arg>${CRYPT_KEY}</arg>
-<arg>${UUID_SAFE1}</arg>
-<arg>${TEMPLATE_ID_HTML}</arg>
-<arg>${NOME_DOC_HTML}</arg>
-<arg>${MARCA_VAR}</arg>
-<arg>${LARANJA_VAR}</arg>
-<arg>${COR_VAR}</arg>
-<arg>${TRUEFALSE_VAR}</arg>
-<arg>${RUA_VAR}</arg>
-<arg>${LUGARES_VAR}</arg>
-<arg>${RESTAURANT_VAR}</arg>
-<doc>Cria um documento a partir de um template HTML.</doc>
-<status status="PASS" start="2025-09-30T00:12:07.177354" elapsed="8.726853"/>
+<kw name="Login D4Sign" owner="ui_keywords">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<arg>${URL}</arg>
+<arg>${BROWSER_HEADLESS}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-09-30T20:35:16.978501" elapsed="5.983557"/>
 </kw>
-<kw name="Status Should Be" owner="RequestsLibrary">
-<arg>200</arg>
-<arg>${response}</arg>
-<doc>Fails if response status code is different than the expected.</doc>
-<status status="PASS" start="2025-09-30T00:12:15.906059" elapsed="0.001652"/>
+<kw name="Set Window Size" owner="SeleniumLibrary">
+<arg>1920</arg>
+<arg>1080</arg>
+<doc>Sets current windows size to given ``width`` and ``height``.</doc>
+<status status="PASS" start="2025-09-30T20:35:22.962969" elapsed="0.294880"/>
 </kw>
-<kw name="Log Response Time" owner="keywords">
-<kw name="Convert To String" owner="BuiltIn">
-<msg time="2025-09-30T00:12:15.912562" level="INFO">${tempo_str} = 0:00:08.707030</msg>
-<var>${tempo_str}</var>
-<arg>${response.elapsed}</arg>
-<doc>Converts the given item to a Unicode string.</doc>
-<status status="PASS" start="2025-09-30T00:12:15.910768" elapsed="0.002059"/>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<arg>${set_cookie}</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2025-09-30T20:35:23.258567" elapsed="0.026653"/>
 </kw>
-<kw name="Split String" owner="String">
-<msg time="2025-09-30T00:12:15.913607" level="INFO">${partes} = ['0', '00', '08.707030']</msg>
-<var>${partes}</var>
-<arg>${tempo_str}</arg>
-<arg>:</arg>
-<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
-<status status="PASS" start="2025-09-30T00:12:15.912996" elapsed="0.001101"/>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${Email}</arg>
+<arg>${TIMEOUT}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-09-30T20:35:23.285890" elapsed="2.158158"/>
 </kw>
-<kw name="Convert To Number" owner="BuiltIn">
-<msg time="2025-09-30T00:12:15.915813" level="INFO">${segundos} = 8.70703</msg>
-<var>${segundos}</var>
-<arg>${partes}[2]</arg>
-<doc>Converts the given item to a floating point number.</doc>
-<status status="PASS" start="2025-09-30T00:12:15.914885" elapsed="0.001364"/>
+<kw name="Input Text" owner="SeleniumLibrary">
+<arg>${Email}</arg>
+<arg>${USERNAME}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-09-30T20:35:25.444704" elapsed="0.122895"/>
 </kw>
-<kw name="Evaluate" owner="BuiltIn">
-<msg time="2025-09-30T00:12:15.920539" level="INFO">${tempo_arredondado} = 8.707</msg>
-<var>${tempo_arredondado}</var>
-<arg>round(${segundos}, 3)</arg>
-<doc>Evaluates the given expression in Python and returns the result.</doc>
-<status status="PASS" start="2025-09-30T00:12:15.916714" elapsed="0.004817"/>
+<kw name="Input Text" owner="SeleniumLibrary">
+<arg>${Passwd}</arg>
+<arg>${PASSWORD}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-09-30T20:35:25.568126" elapsed="0.051557"/>
 </kw>
-<return>
-<value>${tempo_arredondado}</value>
-<status status="PASS" start="2025-09-30T00:12:15.921778" elapsed="0.000312"/>
-</return>
-<arg>${response}</arg>
-<status status="PASS" start="2025-09-30T00:12:15.908796" elapsed="0.013464"/>
+<kw name="Click Button" owner="SeleniumLibrary">
+<arg>${logar}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2025-09-30T20:35:25.620009" elapsed="0.263969"/>
 </kw>
-<kw name="Call Method" owner="BuiltIn">
-<msg time="2025-09-30T00:12:15.923447" level="INFO">${json_anexo} = {'message': 'success', 'uuid': 'f66aff56-8e89-43a3-926f-8e506ce84d01'}</msg>
-<var>${json_anexo}</var>
-<arg>${response}</arg>
-<arg>json</arg>
-<doc>Calls the named method of the given object with the provided arguments.</doc>
-<status status="PASS" start="2025-09-30T00:12:15.922688" elapsed="0.001111"/>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${logoD4S}</arg>
+<arg>${TIMEOUT}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-09-30T20:35:25.884567" elapsed="3.206702"/>
 </kw>
-<kw name="Should Be Equal As Strings" owner="BuiltIn">
-<arg>${json_anexo['message']}</arg>
-<arg>success</arg>
-<doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" start="2025-09-30T00:12:15.924822" elapsed="0.001869"/>
+<kw name="Page Should Contain Image" owner="SeleniumLibrary">
+<arg>${logoD4S}</arg>
+<doc>Verifies image identified by ``locator`` is found from current page.</doc>
+<status status="PASS" start="2025-09-30T20:35:29.091621" elapsed="0.015020"/>
 </kw>
-<kw name="Log Response As Formatted JSON" owner="keywords">
-<kw name="Evaluate" owner="BuiltIn">
-<msg time="2025-09-30T00:12:15.930043" level="INFO">${json} = {'message': 'success', 'uuid': 'f66aff56-8e89-43a3-926f-8e506ce84d01'}</msg>
-<var>${json}</var>
-<arg>json.loads(r'''${response.text}''')</arg>
-<arg>json</arg>
-<doc>Evaluates the given expression in Python and returns the result.</doc>
-<status status="PASS" start="2025-09-30T00:12:15.927768" elapsed="0.002558"/>
+<arg>${browser_type}</arg>
+<arg>${set_cookie}</arg>
+<doc>Realiza login no sistema D4Sign</doc>
+<status status="PASS" start="2025-09-30T20:35:16.977987" elapsed="12.129050"/>
 </kw>
-<kw name="Evaluate" owner="BuiltIn">
-<msg time="2025-09-30T00:12:15.932111" level="INFO">${pretty} = {
-  "message": "success",
-  "uuid": "f66aff56-8e89-43a3-926f-8e506ce84d01"
-}</msg>
-<var>${pretty}</var>
-<arg>json.dumps(${json}, indent=2, ensure_ascii=False)</arg>
-<arg>json</arg>
-<doc>Evaluates the given expression in Python and returns the result.</doc>
-<status status="PASS" start="2025-09-30T00:12:15.930514" elapsed="0.002184"/>
+<doc>Setup comum para todos os testes</doc>
+<status status="PASS" start="2025-09-30T20:35:16.968438" elapsed="12.138835"/>
+</kw>
+<test id="s1-s1-s1-s1-s1-t1" name="Preenchimento de Template HTML" line="15">
+<kw name="Log Template Test Info" owner="tag_logging">
+<kw name="Log Tag Info" owner="tag_logging">
+<kw name="Set Variable If" owner="BuiltIn">
+<var>${emoji}</var>
+<arg>'${tag}' == '${SMOKE_TAG}'</arg>
+<arg>🔥</arg>
+<arg>'${tag}' == '${API_TAG}'</arg>
+<arg>🌐</arg>
+<arg>'${tag}' == '${UI_TAG}'</arg>
+<arg>🖥️</arg>
+<arg>'${tag}' == '${CRITICAL_TAG}'</arg>
+<arg>⚠️</arg>
+<arg>'${tag}' == '${REGRESSION_TAG}'</arg>
+<arg>🔄</arg>
+<arg>'${tag}' == '${LOGIN_TAG}'</arg>
+<arg>🔐</arg>
+<arg>'${tag}' == '${UPLOAD_TAG}'</arg>
+<arg>📤</arg>
+<arg>'${tag}' == '${SIGNATURE_TAG}'</arg>
+<arg>✍️</arg>
+<arg>'${tag}' == '${TEMPLATE_TAG}'</arg>
+<arg>📄</arg>
+<arg>'${tag}' == '${BATCH_TAG}'</arg>
+<arg>📦</arg>
+<arg>🏷️</arg>
+<doc>Sets variable based on the given condition.</doc>
+<status status="PASS" start="2025-09-30T20:35:29.123384" elapsed="0.004357"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-09-30T00:12:15.934499" level="INFO">{
-  "message": "success",
-  "uuid": "f66aff56-8e89-43a3-926f-8e506ce84d01"
-}</msg>
-<arg>${pretty}</arg>
+<arg>${emoji} [${tag}] ${message}</arg>
+<arg>${level}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-09-30T00:12:15.933045" elapsed="0.003367"/>
+<status status="PASS" start="2025-09-30T20:35:29.129085" elapsed="0.001961"/>
 </kw>
-<kw name="Log To Console" owner="BuiltIn">
-<arg>${pretty}</arg>
-<doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-09-30T00:12:15.937401" elapsed="0.002299"/>
+<arg>${TEMPLATE_TAG}</arg>
+<arg>${message}</arg>
+<doc>Log informações específicas baseadas na tag do teste</doc>
+<status status="PASS" start="2025-09-30T20:35:29.121346" elapsed="0.010180"/>
 </kw>
-<arg>${response}</arg>
-<status status="PASS" start="2025-09-30T00:12:15.927180" elapsed="0.013441"/>
+<arg>Iniciando teste de template Word</arg>
+<doc>Log específico para testes de template</doc>
+<status status="PASS" start="2025-09-30T20:35:29.118295" elapsed="0.013487"/>
 </kw>
-<kw name="Log Response As Formatted JSON" owner="keywords">
-<kw name="Evaluate" owner="BuiltIn">
-<msg time="2025-09-30T00:12:15.951159" level="INFO">${json} = {'message': 'success', 'uuid': 'f66aff56-8e89-43a3-926f-8e506ce84d01'}</msg>
-<var>${json}</var>
-<arg>json.loads(r'''${response.text}''')</arg>
-<arg>json</arg>
-<doc>Evaluates the given expression in Python and returns the result.</doc>
-<status status="PASS" start="2025-09-30T00:12:15.944663" elapsed="0.008256"/>
+<kw name="Click Element" owner="SeleniumLibrary">
+<arg>${cofre12}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-09-30T20:35:29.132616" elapsed="5.226982"/>
 </kw>
-<kw name="Evaluate" owner="BuiltIn">
-<msg time="2025-09-30T00:12:15.955831" level="INFO">${pretty} = {
-  "message": "success",
-  "uuid": "f66aff56-8e89-43a3-926f-8e506ce84d01"
-}</msg>
-<var>${pretty}</var>
-<arg>json.dumps(${json}, indent=2, ensure_ascii=False)</arg>
-<arg>json</arg>
-<doc>Evaluates the given expression in Python and returns the result.</doc>
-<status status="PASS" start="2025-09-30T00:12:15.953447" elapsed="0.002709"/>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>${IAmodal}</arg>
+<arg>${TIMEOUT}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-09-30T20:35:34.360878" elapsed="4.113195"/>
 </kw>
-<kw name="Log" owner="BuiltIn">
-<msg time="2025-09-30T00:12:15.956914" level="INFO">{
-  "message": "success",
-  "uuid": "f66aff56-8e89-43a3-926f-8e506ce84d01"
-}</msg>
-<arg>${pretty}</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-09-30T00:12:15.956399" elapsed="0.000879"/>
+<kw name="Click Element" owner="SeleniumLibrary">
+<arg>${IAmodal}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-09-30T20:35:38.474728" elapsed="0.101034"/>
 </kw>
-<kw name="Log To Console" owner="BuiltIn">
-<arg>${pretty}</arg>
-<doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-09-30T00:12:15.957587" elapsed="0.001124"/>
+<kw name="Wait Until Page Does Not Contain Element" owner="SeleniumLibrary">
+<arg>${IAmodal}</arg>
+<arg>${TIMEOUT}</arg>
+<doc>Waits until the element ``locator`` disappears from the current page.</doc>
+<status status="PASS" start="2025-09-30T20:35:38.576415" elapsed="0.007730"/>
 </kw>
-<arg>${response}</arg>
-<status status="PASS" start="2025-09-30T00:12:15.941582" elapsed="0.017409"/>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${novoArquivo}</arg>
+<arg>${TIMEOUT}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-09-30T20:35:38.584836" elapsed="0.037990"/>
 </kw>
-<doc>Valida a criação de um documento usando um template HTML e variáveis específicas.</doc>
-<status status="PASS" start="2025-09-30T00:12:07.172297" elapsed="8.787925"/>
+<kw name="Click Element" owner="SeleniumLibrary">
+<arg>${novoArquivo}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-09-30T20:35:38.623979" elapsed="0.145485"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<arg>${templateWORD}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-09-30T20:35:38.770262" elapsed="1.746714"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<arg>${campoCodigo}</arg>
+<arg>000001</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="FAIL" start="2025-09-30T20:35:40.518618" elapsed="0.228086">Element with locator '//*[@id="form_clientecodigo"]' not found.</status>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<arg>${campoData}</arg>
+<arg>17/09/2025</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="NOT RUN" start="2025-09-30T20:35:40.747797" elapsed="0.000579"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<arg>${campoNomeFantasia}</arg>
+<arg>Marisa Modas</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="NOT RUN" start="2025-09-30T20:35:40.748792" elapsed="0.000381"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<arg>${campoCidade}</arg>
+<arg>Sáo Paulo</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="NOT RUN" start="2025-09-30T20:35:40.749623" elapsed="0.000373"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<arg>${campoEndereco}</arg>
+<arg>Av. Brasil</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="NOT RUN" start="2025-09-30T20:35:40.750443" elapsed="0.000369"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<arg>${campoBairro}</arg>
+<arg>Paris</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="NOT RUN" start="2025-09-30T20:35:40.751239" elapsed="0.000373"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<arg>${campoCep}</arg>
+<arg>08531147</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="NOT RUN" start="2025-09-30T20:35:40.752038" elapsed="0.000383"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<arg>${salvarTemplate}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="NOT RUN" start="2025-09-30T20:35:40.753104" elapsed="0.000857"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>${verificaEnvio}</arg>
+<arg>240s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="NOT RUN" start="2025-09-30T20:35:40.754754" elapsed="0.000983"/>
+</kw>
+<tag>regression</tag>
+<tag>template</tag>
+<tag>ui</tag>
+<status status="FAIL" start="2025-09-30T20:35:29.107412" elapsed="11.649543">Element with locator '//*[@id="form_clientecodigo"]' not found.</status>
 </test>
-<status status="PASS" start="2025-09-30T00:12:06.767569" elapsed="9.215755"/>
+<test id="s1-s1-s1-s1-s1-t2" name="Envio do Documento" line="37">
+<kw name="Click Element" owner="SeleniumLibrary">
+<arg>${incluirEmail}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="FAIL" start="2025-09-30T20:35:40.806708" elapsed="0.216143">Element with locator '//*[@id="page-wrapper"]/div[2]/div/div[1]/div/div/div/div[4]/div/div[2]/div[1]/span[1]/a' not found.</status>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${botaoAssinatura}</arg>
+<arg>${TIMEOUT}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="NOT RUN" start="2025-09-30T20:35:41.024285" elapsed="0.001492"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<arg>10s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" start="2025-09-30T20:35:41.026656" elapsed="0.000793"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<arg>${botaoAssinatura}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="NOT RUN" start="2025-09-30T20:35:41.028406" elapsed="0.000758"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${botaoEnvio2}</arg>
+<arg>${TIMEOUT}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="NOT RUN" start="2025-09-30T20:35:41.029892" elapsed="0.000630"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<arg>${botaoEnvio2}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="NOT RUN" start="2025-09-30T20:35:41.031196" elapsed="0.000550"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>${faseEnviado}</arg>
+<arg>${TIMEOUT}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="NOT RUN" start="2025-09-30T20:35:41.032360" elapsed="0.000615"/>
+</kw>
+<status status="FAIL" start="2025-09-30T20:35:40.796220" elapsed="0.237778">Element with locator '//*[@id="page-wrapper"]/div[2]/div/div[1]/div/div/div/div[4]/div/div[2]/div[1]/span[1]/a' not found.</status>
+</test>
+<test id="s1-s1-s1-s1-s1-t3" name="Assinatura do Template" line="47">
+<kw name="Click Element" owner="SeleniumLibrary">
+<arg>${assinar}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="FAIL" start="2025-09-30T20:35:41.075493" elapsed="0.157321">Element with locator '//*[@id="adicionar-assinatura"]' not found.</status>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${senhaConta}</arg>
+<arg>${TIMEOUT}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="NOT RUN" start="2025-09-30T20:35:41.233709" elapsed="0.000691"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<arg>${senhaConta}</arg>
+<arg>${PASSWORD}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="NOT RUN" start="2025-09-30T20:35:41.235405" elapsed="0.001103"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<arg>${salvarAssinatura}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="NOT RUN" start="2025-09-30T20:35:41.237067" elapsed="0.000385"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${verificaAssinatura}</arg>
+<arg>${TIMEOUT}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="NOT RUN" start="2025-09-30T20:35:41.237851" elapsed="0.000354"/>
+</kw>
+<kw name="Page Should Contain Element" owner="SeleniumLibrary">
+<arg>${verificaAssinatura}</arg>
+<doc>Verifies that element ``locator`` is found on the current page.</doc>
+<status status="NOT RUN" start="2025-09-30T20:35:41.238549" elapsed="0.000286"/>
+</kw>
+<status status="FAIL" start="2025-09-30T20:35:41.045109" elapsed="0.194154">Element with locator '//*[@id="adicionar-assinatura"]' not found.</status>
+</test>
+<kw name="Suite Teardown" owner="ui_keywords" type="TEARDOWN">
+<kw name="Log" owner="BuiltIn">
+<arg>Finalizando execução da suíte de testes</arg>
+<arg>INFO</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-09-30T20:35:41.279706" elapsed="0.001032"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2025-09-30T20:35:41.281175" elapsed="4.187779"/>
+</kw>
+<doc>Teardown da suíte de testes</doc>
+<status status="PASS" start="2025-09-30T20:35:41.278395" elapsed="4.190903"/>
+</kw>
+<status status="FAIL" start="2025-09-30T20:35:16.465045" elapsed="29.004439"/>
 </suite>
-<status status="PASS" start="2025-09-30T00:12:06.751158" elapsed="9.266419"/>
+<status status="FAIL" start="2025-09-30T20:35:16.434663" elapsed="29.039870"/>
 </suite>
-<status status="PASS" start="2025-09-30T00:12:06.642088" elapsed="9.391243"/>
+<status status="FAIL" start="2025-09-30T20:35:16.412707" elapsed="29.066939"/>
+</suite>
+<status status="FAIL" start="2025-09-30T20:35:16.398288" elapsed="29.085372"/>
+</suite>
+<status status="FAIL" start="2025-09-30T20:35:16.261907" elapsed="29.226768"/>
 </suite>
 <statistics>
 <total>
-<stat pass="1" fail="0" skip="0">All Tests</stat>
+<stat pass="0" fail="3" skip="0">All Tests</stat>
 </total>
 <tag>
+<stat pass="0" fail="1" skip="0">regression</stat>
+<stat pass="0" fail="1" skip="0">template</stat>
+<stat pass="0" fail="1" skip="0">ui</stat>
 </tag>
 <suite>
-<stat name="Robot" id="s1" pass="1" fail="0" skip="0">Robot</stat>
-<stat name="API" id="s1-s1" pass="1" fail="0" skip="0">Robot.API</stat>
-<stat name="Posts-API" id="s1-s1-s1" pass="1" fail="0" skip="0">Robot.API.Posts-API</stat>
+<stat name="Robot" id="s1" pass="0" fail="3" skip="0">Robot</stat>
+<stat name="Tests" id="s1-s1" pass="0" fail="3" skip="0">Robot.Tests</stat>
+<stat name="Smoke" id="s1-s1-s1" pass="0" fail="3" skip="0">Robot.Tests.Smoke</stat>
+<stat name="Templates" id="s1-s1-s1-s1" pass="0" fail="3" skip="0">Robot.Tests.Smoke.Templates</stat>
+<stat name="10-Envio-Template-Word" id="s1-s1-s1-s1-s1" pass="0" fail="3" skip="0">Robot.Tests.Smoke.Templates.10-Envio-Template-Word</stat>
 </suite>
 </statistics>
 <errors>
