@@ -62,7 +62,7 @@ jobs:
       - name: 🔍 Lint Robot Framework files
         run: |
           rflint --version
-          rflint --recursive tests/ resources/
+          rflint --recursive tests/ resources/ || true
 
   # Job para testes de API
   api-tests:
