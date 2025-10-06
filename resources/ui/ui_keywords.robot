@@ -13,13 +13,13 @@ Test Setup
     # Configurações iniciais
     Set Log Level    ${LOG_LEVEL}
     
-    Set Log Level    NONE
+    Set Log Level    DEBUG
     ${url}=    Set Variable If
     ...    '${ENVIRONMENT}'=='dev'         ${URL_DEV}
     ...    '${ENVIRONMENT}'=='homol'       ${URL_HOMOL}
     ...    '${ENVIRONMENT}'=='staging'     ${URL_STAGING}
     ...    '${ENVIRONMENT}'=='prod'        ${URL_PROD}
-    ...    ${URL_PROD}
+    ...     ${URL_PROD}
     Set Suite Variable    ${URL}    ${url}
 
     ${timeout}=    Set Variable If

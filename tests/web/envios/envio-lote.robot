@@ -51,6 +51,13 @@ Envio em Lote
     Input Text                              ${campoSenha}        ${PASSWORD}
     Click Element                           ${btnFim}
     Wait Until Page Contains Element        ${tagProcessando}
-    Sleep                                                        120s
-    Reload Page
-    Wait Until Page Contains Element        ${tagProcessado}     ${TIMEOUT}
+    # Abaixo, ocorrerá um loop de reloads para verificar se o documento foi processado.
+    # vai parar automaticamente após 10 tentativas e falhar o teste ou quando o documento for processado.
+    ${encontrado}=    Set Variable    False
+    FOR    ${i}    IN RANGE    1    10
+        Reload Page
+        ${encontrado}=    Run Keyword And Return Status    Page Should Contain Element    ${tagProcessado}
+        Exit For Loop If    ${encontrado}
+        Sleep    5s    # Pequena espera entre reloads
+    END
+    Should Be True    ${encontrado}    O documento/processo não foi processado após 10 tentativas!

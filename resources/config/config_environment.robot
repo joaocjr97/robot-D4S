@@ -4,7 +4,7 @@ ${ENVIRONMENT}          ${EMPTY}    # dev, staging, prod
 ${BROWSER_MODE}         headless    # headless, gui
 ${PARALLEL_EXECUTION}   ${FALSE}    # true, false
 ${SCREENSHOT_ON_FAIL}   ${TRUE}     # true, false
-${LOG_LEVEL}            TRACE       # DEBUG, INFO, WARN, ERROR, TRACE
+${LOG_LEVEL}            DEBUG       # DEBUG, INFO, WARN, ERROR, TRACE
 
 # URLs por ambiente
 ${URL_DEV}              https://ghost.d4sign.com.br/

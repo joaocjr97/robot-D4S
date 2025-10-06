@@ -14,6 +14,12 @@ ${SIGNATURE_TAG}          signature
 ${TEMPLATE_TAG}           template
 ${BATCH_TAG}              batch
 
+# Tags de ambiente
+${DEV_TAG}                dev
+${HOMOL_TAG}              homol
+${STAGING_TAG}            staging
+${PROD_TAG}               prod
+
 *** Keywords ***
 Log Tag Info
     [Documentation]    Log informações específicas baseadas na tag do teste
