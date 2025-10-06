@@ -65,10 +65,10 @@ ${urgenteTag}        //*[@id="div-tags-635fbe6a-53bc-4bab-b569-da512c267bd8"]/di
 ${cofre12}           //*[@id="liCofre_1414985"]/a
 ${btnFase}           //*[@id="divBtnMoveFase"]/button
 ${fase1}             //*[@id="divBtnMoveFase"]/ul/li[3]/a
-${signatarios}       //span[contains(normalize-space(text()), 'AGUARDANDO SIGNATÁRIOS')]
+${signatarios}       //span[contains(normalize-space(text()), 'AWAITING SIGNATORIES')]
 ${fase2}             //*[@id="divBtnMoveFase"]/ul/li[4]/a
-${assinaturas}       //span[contains(normalize-space(text()), 'AGUARDANDO ASSINATURAS')]
-${finalizado}        //span[contains(normalize-space(text()), 'FINALIZADO')]
+${assinaturas}       //span[contains(normalize-space(text()), 'AWAITING SIGNATURES')]
+${finalizado}        //span[contains(normalize-space(text()), 'FINISHED')]
 ${fase3}             //*[@id="divBtnMoveFase"]/ul/li[5]/a
 ${btnInicio}         //*[@id="page-wrapper"]/div[2]/div[1]/div[1]/a
 ${IAmodal}           css:.modal-backdrop.in   
@@ -151,8 +151,8 @@ ${sucesso}               //*[@id="sucesso"]/h4
 ${processamento}         //*[@id="contratos"]/tbody/tr[1]/td[6]/div/ul/li[8]/a
 ${campoSenha}            //*[@id="senhaConta"]
 ${btnFim}                //*[@id="btnSalvarDocumento"]
-${tagProcessando}        //small[contains(text(), 'ENVIADO PARA PROCESSAMENTO')]
-${tagProcessado}         //small[contains(text(), 'PROCESSADO')]
+${tagProcessando}        //small[contains(text(), 'SUBMITTED FOR PROCESSING')]
+${tagProcessado}         //small[contains(text(), 'PROCESSED')]
 
 # =============================================================================
 # POWERFORM (12-envio-powerform.robot)
