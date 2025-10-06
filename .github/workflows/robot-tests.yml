@@ -1,10 +1,12 @@
-name: Robot Framework Tests
+name: 🤖 Robot Framework Tests
+
 on:
   push:
     branches: [ main, develop ]
   pull_request:
     branches: [ main, develop ]
   schedule:
+    # Executa testes todos os dias às 2h UTC (23h BRT)
     - cron: '0 2 * * *'
   workflow_dispatch:
     inputs:
@@ -27,22 +29,27 @@ on:
         - api
         - web
         - smoke
+
 env:
   PYTHON_VERSION: '3.9'
   CHROME_VERSION: 'latest'
   ROBOT_FRAMEWORK_VERSION: '6.0.2'
+
 jobs:
+  # Job para validação de qualidade do código
   code-quality:
-    name: Code Quality Check
+    name: 🔍 Code Quality Check
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: 📥 Checkout code
         uses: actions/checkout@v4
-      - name: Set up Python
+
+      - name: 🐍 Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: ${{ env.PYTHON_VERSION }}
-      - name: Install dependencies
+
+      - name: 📦 Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install robotframework
@@ -52,12 +59,15 @@ jobs:
           pip install robotframework-requests
           pip install robotframework-jsonlibrary
           pip install robotframework-lint
-      - name: Lint Robot Framework files
+
+      - name: 🔍 Lint Robot Framework files
         run: |
           rflint --version
           rflint --recursive tests/ resources/
+
+  # Job para testes de API
   api-tests:
-    name: API Tests
+    name: 🌐 API Tests
     runs-on: ubuntu-latest
     needs: code-quality
     if: github.event.inputs.test_suite == 'all' || github.event.inputs.test_suite == 'api' || github.event.inputs.test_suite == 'smoke'
@@ -66,19 +76,22 @@ jobs:
       matrix:
         environment: [dev, staging]
     steps:
-      - name: Checkout code
+      - name: 📥 Checkout code
         uses: actions/checkout@v4
-      - name: Set up Python
+
+      - name: 🐍 Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: ${{ env.PYTHON_VERSION }}
-      - name: Install dependencies
+
+      - name: 📦 Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install robotframework==${{ env.ROBOT_FRAMEWORK_VERSION }}
           pip install robotframework-requests
           pip install robotframework-jsonlibrary
-      - name: Run API Tests
+
+      - name: 🧪 Run API Tests
         env:
           ENVIRONMENT: ${{ matrix.environment }}
           TOKEN_API: ${{ secrets.TOKEN_API }}
@@ -94,14 +107,17 @@ jobs:
             --variable EMAIL_TESTE:${{ secrets.EMAIL_TESTE }} \
             --include api \
             tests/api/
-      - name: Upload API Test Results
+
+      - name: 📊 Upload API Test Results
         uses: actions/upload-artifact@v3
         if: always()
         with:
           name: api-test-results-${{ matrix.environment }}
           path: results/api/${{ matrix.environment }}/
+
+  # Job para testes Web
   web-tests:
-    name: Web Tests
+    name: 🖥️ Web Tests
     runs-on: ubuntu-latest
     needs: code-quality
     if: github.event.inputs.test_suite == 'all' || github.event.inputs.test_suite == 'web' || github.event.inputs.test_suite == 'smoke'
@@ -110,26 +126,31 @@ jobs:
       matrix:
         environment: [dev, staging]
     steps:
-      - name: Checkout code
+      - name: 📥 Checkout code
         uses: actions/checkout@v4
-      - name: Set up Python
+
+      - name: 🐍 Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: ${{ env.PYTHON_VERSION }}
-      - name: Install dependencies
+
+      - name: 📦 Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install robotframework==${{ env.ROBOT_FRAMEWORK_VERSION }}
           pip install robotframework-seleniumlibrary
           pip install robotframework-faker
           pip install robotframework-operatingsystem
-      - name: Set up Chrome
+
+      - name: 🌐 Set up Chrome
         uses: browser-actions/setup-chrome@v1
         with:
           chrome-version: ${{ env.CHROME_VERSION }}
-      - name: Set up ChromeDriver
+
+      - name: 📦 Set up ChromeDriver
         uses: nanasess/setup-chromedriver@v2
-      - name: Run Web Tests
+
+      - name: 🧪 Run Web Tests
         env:
           ENVIRONMENT: ${{ matrix.environment }}
           USERNAME: ${{ secrets.USERNAME }}
@@ -147,14 +168,17 @@ jobs:
             --variable BROWSER_MODE:headless \
             --include web \
             tests/web/
-      - name: Upload Web Test Results
+
+      - name: 📊 Upload Web Test Results
         uses: actions/upload-artifact@v3
         if: always()
         with:
           name: web-test-results-${{ matrix.environment }}
           path: results/web/${{ matrix.environment }}/
+
+  # Job para execução combinada (todos os testes)
   combined-tests:
-    name: Combined Tests
+    name: 🔄 Combined Tests
     runs-on: ubuntu-latest
     needs: [api-tests, web-tests]
     if: github.event.inputs.test_suite == 'all' || github.event.inputs.test_suite == 'smoke'
@@ -163,13 +187,15 @@ jobs:
       matrix:
         environment: [dev, staging]
     steps:
-      - name: Checkout code
+      - name: 📥 Checkout code
         uses: actions/checkout@v4
-      - name: Set up Python
+
+      - name: 🐍 Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: ${{ env.PYTHON_VERSION }}
-      - name: Install dependencies
+
+      - name: 📦 Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install robotframework==${{ env.ROBOT_FRAMEWORK_VERSION }}
@@ -178,13 +204,16 @@ jobs:
           pip install robotframework-operatingsystem
           pip install robotframework-requests
           pip install robotframework-jsonlibrary
-      - name: Set up Chrome
+
+      - name: 🌐 Set up Chrome
         uses: browser-actions/setup-chrome@v1
         with:
           chrome-version: ${{ env.CHROME_VERSION }}
-      - name: Set up ChromeDriver
+
+      - name: 📦 Set up ChromeDriver
         uses: nanasess/setup-chromedriver@v2
-      - name: Run All Tests
+
+      - name: 🧪 Run All Tests
         env:
           ENVIRONMENT: ${{ matrix.environment }}
           USERNAME: ${{ secrets.USERNAME }}
@@ -206,112 +235,117 @@ jobs:
             --variable BROWSER_MODE:headless \
             --include smoke \
             tests/
-      - name: Upload Combined Test Results
+
+      - name: 📊 Upload Combined Test Results
         uses: actions/upload-artifact@v3
         if: always()
         with:
           name: combined-test-results-${{ matrix.environment }}
           path: results/combined/${{ matrix.environment }}/
+
+  # Job para geração de relatórios
   generate-reports:
-    name: Generate Reports
+    name: 📊 Generate Reports
     runs-on: ubuntu-latest
     needs: [api-tests, web-tests, combined-tests]
     if: always()
     steps:
-      - name: Checkout code
+      - name: 📥 Checkout code
         uses: actions/checkout@v4
-      - name: Download all artifacts
+
+      - name: 📦 Download all artifacts
         uses: actions/download-artifact@v3
         with:
           path: artifacts/
-      - name: Generate Summary Report
+
+      - name: 📊 Generate Summary Report
         run: |
           mkdir -p reports/summary
-          echo "# Robot Framework Test Results" > reports/summary/README.md
+          echo "# 🤖 Robot Framework Test Results" > reports/summary/README.md
           echo "" >> reports/summary/README.md
-          echo "## Execution Date: $(date)" >> reports/summary/README.md
+          echo "## 📅 Execution Date: $(date)" >> reports/summary/README.md
           echo "" >> reports/summary/README.md
-          echo "### Test Results by Environment:" >> reports/summary/README.md
+          echo "### 🧪 Test Results by Environment:" >> reports/summary/README.md
           
           # Processar resultados por ambiente
           for env in dev staging; do
             echo "" >> reports/summary/README.md
-            echo "#### Environment: $env" >> reports/summary/README.md
+            echo "#### 🌍 Environment: $env" >> reports/summary/README.md
             echo "" >> reports/summary/README.md
             
             # API Results
             if [ -d "artifacts/api-test-results-$env" ]; then
-              echo "**API Tests:**" >> reports/summary/README.md
+              echo "**🌐 API Tests:**" >> reports/summary/README.md
               echo "- Results: [View API Report](./api-test-results-$env/report.html)" >> reports/summary/README.md
               echo "" >> reports/summary/README.md
             fi
             
             # Web Results
             if [ -d "artifacts/web-test-results-$env" ]; then
-              echo "**Web Tests:**" >> reports/summary/README.md
+              echo "**🖥️ Web Tests:**" >> reports/summary/README.md
               echo "- Results: [View Web Report](./web-test-results-$env/report.html)" >> reports/summary/README.md
               echo "" >> reports/summary/README.md
             fi
             
             # Combined Results
             if [ -d "artifacts/combined-test-results-$env" ]; then
-              echo "**Combined Tests:**" >> reports/summary/README.md
+              echo "**🔄 Combined Tests:**" >> reports/summary/README.md
               echo "- Results: [View Combined Report](./combined-test-results-$env/report.html)" >> reports/summary/README.md
               echo "" >> reports/summary/README.md
             fi
           done
-      - name: Upload Summary Report
+
+      - name: 📊 Upload Summary Report
         uses: actions/upload-artifact@v3
         with:
           name: test-summary-report
           path: reports/summary/
+
+  # Job para notificações
   notifications:
-    name: Notifications
+    name: 📢 Notifications
     runs-on: ubuntu-latest
     needs: [generate-reports]
     if: always()
     steps:
-      - name: Checkout code
+      - name: 📥 Checkout code
         uses: actions/checkout@v4
-      - name: Download summary report
+
+      - name: 📦 Download summary report
         uses: actions/download-artifact@v3
         with:
           name: test-summary-report
           path: reports/
-      - name: Send notification
+
+      - name: 📧 Send notification
         run: |
+          # Verificar status dos jobs
           if [ "${{ needs.api-tests.result }}" == "failure" ] || [ "${{ needs.web-tests.result }}" == "failure" ] || [ "${{ needs.combined-tests.result }}" == "failure" ]; then
-            echo "Some tests failed!"
-            echo "Check the workflow run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+            echo "❌ Some tests failed!"
+            echo "🔗 Check the workflow run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           else
-            echo "All tests passed!"
-            echo "Check the workflow run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+            echo "✅ All tests passed!"
+            echo "🔗 Check the workflow run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           fi
-      - name: Comment on PR
+
+      - name: 📊 Comment on PR
         if: github.event_name == 'pull_request'
         uses: actions/github-script@v6
         with:
           script: |
-  let comment = '## Robot Framework Test Results\n\n';
-  
-  function getStatus(status) {
-      if (status === 'success') return '✅ Passed';
-      if (status === 'failure') return '❌ Failed';
-      return '⏭️ Skipped';
-  }
-
-  comment += `- **API Tests**: ${getStatus(needs['api-tests'].result)}\n`;
-  comment += `- **Web Tests**: ${getStatus(needs['web-tests'].result)}\n`;
-  comment += `- **Combined Tests**: ${getStatus(needs['combined-tests'].result)}\n\n`;
-
-  comment += `🔗 [View detailed results](${github.server_url}/${github.repository}/actions/runs/${github.run_id})\n`;
-
-  github.rest.issues.createComment({
-    issue_number: context.issue.number,
-    owner: context.repo.owner,
-    repo: context.repo.repo,
-    body: comment
-  });
+            let comment = '## 🤖 Robot Framework Test Results\n\n';
+            
+            function getStatus(status) {
+                if (status === 'success') return '✅ Passed';
+                if (status === 'failure') return '❌ Failed';
+                return '⏭️ Skipped';
+            }
+            
+            comment += `- **API Tests**: ${getStatus('${{ needs.api-tests.result }}')}\n`;
+            comment += `- **Web Tests**: ${getStatus('${{ needs.web-tests.result }}')}\n`;
+            comment += `- **Combined Tests**: ${getStatus('${{ needs.combined-tests.result }}')}\n\n`;
+            
+            comment += `🔗 [View detailed results](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})\n`;
             
             github.rest.issues.createComment({
               issue_number: context.issue.number,
