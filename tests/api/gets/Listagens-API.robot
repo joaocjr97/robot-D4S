@@ -10,7 +10,7 @@ Resource   ../../../resources/common/tag_logging.robot
 *** Test Cases ***
 1 - Listar todos os documentos da conta
     [Documentation]    Listar todos os documentos da conta
-    [Tags]    ${API_TAG}    ${SMOKE_TAG}    ${CRITICAL_TAG}
+    [Tags]    api    smoke    critical
     Log API Test Info    Iniciando listagem de todos os documentos
     ${response}=    Listar Todos Documentos Conta
     Log Response Time    ${response}
@@ -19,7 +19,7 @@ Resource   ../../../resources/common/tag_logging.robot
 
 2 - Listar documento específico
     [Documentation]    Listar documento específico
-    [Tags]    ${API_TAG}    ${CRITICAL_TAG}
+    [Tags]    api    critical
     Log API Test Info    Listando documento específico: ${LIST_ESPECIFIC_DOCUMENT}
     ${response}=    Listar Documento Especifico    ${LIST_ESPECIFIC_DOCUMENT}
     Log Response Time    ${response}
@@ -28,7 +28,7 @@ Resource   ../../../resources/common/tag_logging.robot
 
 3 - Listar documentos por fase
     [Documentation]    Listar documentos por fase
-    [Tags]    ${API_TAG}    ${REGRESSION_TAG}
+    [Tags]    api    regression
     Log API Test Info    Listando documentos por fase
     ${response}=    Listar Documentos Por Fase
     Log Response Time    ${response}
@@ -37,7 +37,7 @@ Resource   ../../../resources/common/tag_logging.robot
 
 4 - Listar todos os cofres da conta
     [Documentation]    Listar todos os cofres da conta
-    [Tags]    ${API_TAG}    ${SMOKE_TAG}
+    [Tags]    api    smoke
     Log API Test Info    Listando todos os cofres da conta
     ${response}=    Listar Todos Cofres Conta
     Log Response Time    ${response}
@@ -46,7 +46,7 @@ Resource   ../../../resources/common/tag_logging.robot
 
 5 - Listar documentos de um cofre específico
     [Documentation]    Listar documentos de um cofre específico
-    [Tags]    ${API_TAG}    ${CRITICAL_TAG}
+    [Tags]    api    critical
     Log API Test Info    Listando documentos do cofre: ${UUID_SAFE}
     ${response}=    Listar Documentos De Safe    ${UUID_SAFE}
     Log Response Time    ${response}
@@ -55,7 +55,7 @@ Resource   ../../../resources/common/tag_logging.robot
 
 6 - Listar webhooks de um documento específico
     [Documentation]    Listar webhooks de um documento específico
-    [Tags]    ${API_TAG}    ${REGRESSION_TAG}
+    [Tags]    api    regression
     Log API Test Info    Listando webhooks do documento: ${UUID_WEBHOOK}
     ${response}=    Listar Webhooks De Documento Especifico    ${UUID_WEBHOOK}
     Log Response Time    ${response}
@@ -64,7 +64,7 @@ Resource   ../../../resources/common/tag_logging.robot
 
 7 - Listar pins do documento
     [Documentation]    Lista as assinaturas posicionadas e suas posições em um documento da D4Sign.
-    [Tags]    ${API_TAG}    ${SIGNATURE_TAG}    ${CRITICAL_TAG}
+    [Tags]    api    signature    critical
     Log API Test Info    Listando pins do documento: ${UUID_PINS}
     ${response}=    Listar Pins    ${UUID_PINS}    ${TOKEN_API}    ${CRYPT_KEY}
     Should Be Equal As Strings    ${response.status_code}    200

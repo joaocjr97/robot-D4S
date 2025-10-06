@@ -13,7 +13,7 @@ Resource   ../../../resources/common/tag_logging.robot
 *** Test Cases ***
 1 - Upload de documento PDF
     [Documentation]    Upload de PDF para o endpoint /upload da D4Sign.
-    [Tags]    ${API_TAG}    ${UPLOAD_TAG}    ${CRITICAL_TAG}
+    [Tags]    api    upload    critical
     Log Upload Test Info    Iniciando upload de documento PDF
     ${response}=    Upload PDF    ${RELATIVE_PATH}    ${UUID_SAFE1}    ${TOKEN_API}    ${CRYPT_KEY}
     Log To Console    STATUS: ${response.status_code}
@@ -33,7 +33,7 @@ Resource   ../../../resources/common/tag_logging.robot
 
 2 - Upload de documento binário - base64
     [Documentation]    Faz upload binário (base64) de um PDF para a D4Sign via /uploadbinary.
-    [Tags]    ${API_TAG}    ${UPLOAD_TAG}    ${REGRESSION_TAG}
+    [Tags]    api    upload    regression
     Log Upload Test Info    Iniciando upload binário base64
     ${response}=    Upload Binario    ${RELATIVE_PATH}    ${UUID_SAFE1}    ${TOKEN_API}    ${CRYPT_KEY}    ${MIME_TYPE}    ${NOME}
     Log To Console    STATUS: ${response.status_code}
@@ -53,7 +53,7 @@ Resource   ../../../resources/common/tag_logging.robot
 
 3 - Upload de documento HASH
     [Documentation]    Faz upload do hash SHA256/SHA512 de um PDF para o endpoint /uploadhash da D4Sign.
-    [Tags]    ${API_TAG}    ${UPLOAD_TAG}    ${REGRESSION_TAG}
+    [Tags]    api    upload    regression
     Log Upload Test Info    Iniciando upload de hash SHA256/SHA512
     ${response}=    Upload Hash    ${RELATIVE_PATH}    ${UUID_SAFE1}    ${TOKEN_API}    ${CRYPT_KEY}    ${NOME_HASH}
     Log To Console    STATUS: ${response.status_code}
@@ -73,7 +73,7 @@ Resource   ../../../resources/common/tag_logging.robot
 
 4 - Upload de documento + anexo
     [Documentation]    Envia o documento para assinatura e acrescenta anexo
-    [Tags]    ${API_TAG}    ${UPLOAD_TAG}    ${CRITICAL_TAG}
+    [Tags]    api    upload    critical
     Log Upload Test Info    Iniciando upload de documento com anexo
     # Upload do PDF e captura UUID
     ${response}=    Upload PDF    ${RELATIVE_PATH}    ${UUID_SAFE1}    ${TOKEN_API}    ${CRYPT_KEY}
@@ -101,7 +101,7 @@ Resource   ../../../resources/common/tag_logging.robot
 
 5 - Faz upload - Acrescenta signatários via Email - Envia para assinatura
     [Documentation]    Envia o documento, cadastra signatário via e-mail e envia.
-    [Tags]    ${API_TAG}    ${UPLOAD_TAG}    ${SIGNATURE_TAG}    ${CRITICAL_TAG}
+    [Tags]    api    upload    signature    critical
     Log Signature Test Info    Iniciando fluxo completo: upload + signatário + envio
     # ETAPA 1: Upload do PDF e captura UUID
     ${response_upload}=    Upload PDF    ${RELATIVE_PATH}    ${UUID_SAFE1}    ${TOKEN_API}    ${CRYPT_KEY}
@@ -148,7 +148,7 @@ Resource   ../../../resources/common/tag_logging.robot
 
 6 - Faz upload - Acrescenta signatário via WhatsApp - Envia
     [Documentation]    Envia o documento, cadastra signatário via WhatsApp e envia para assinatura.
-    [Tags]    ${API_TAG}    ${UPLOAD_TAG}    ${SIGNATURE_TAG}    ${REGRESSION_TAG}
+    [Tags]    api    upload    signature    regression
     Log Signature Test Info    Iniciando fluxo WhatsApp: upload + signatário + envio
     # ETAPA 1: Upload do PDF 
     ${response_upload}=    Upload PDF    ${RELATIVE_PATH}    ${UUID_SAFE1}    ${TOKEN_API}    ${CRYPT_KEY}
@@ -195,7 +195,7 @@ Resource   ../../../resources/common/tag_logging.robot
 
 7 - Upload com Pins
     [Documentation]    Sobe o documento e acrescenta pins
-    [Tags]    ${API_TAG}    ${UPLOAD_TAG}    ${SIGNATURE_TAG}    ${CRITICAL_TAG}
+    [Tags]    api    upload    signature    critical
     Log Signature Test Info    Iniciando upload com pins de assinatura
     # Upload do PDF e captura UUID
     ${response}=    Upload PDF    ${RELATIVE_PATH}    ${UUID_SAFE1}    ${TOKEN_API}    ${CRYPT_KEY}
@@ -276,7 +276,7 @@ Resource   ../../../resources/common/tag_logging.robot
 
 8 - Gerar documento via template word
     [Documentation]    Gera um documento via template word e replica pins em todas as páginas
-    [Tags]    ${API_TAG}    ${TEMPLATE_TAG}    ${REGRESSION_TAG}
+    [Tags]    api    template    regression
     Log Template Test Info    Iniciando geração de documento via template Word
     ${response}=    Gerar Documento Via Template Word
     ...    ${TOKEN_API}
@@ -346,7 +346,7 @@ Resource   ../../../resources/common/tag_logging.robot
 
 9 - Envio com edição e remoção de signatário
     [Documentation]    Envia o documento, cadastra signatário, altera e-mail e depois remove.
-    [Tags]    ${API_TAG}    ${SIGNATURE_TAG}    ${REGRESSION_TAG}
+    [Tags]    api    signature    regression
     Log Signature Test Info    Iniciando teste de edição e remoção de signatário
      # Upload do PDF e captura UUID
     ${response}=    Upload PDF    ${RELATIVE_PATH}    ${UUID_SAFE1}    ${TOKEN_API}    ${CRYPT_KEY}
@@ -409,7 +409,7 @@ Resource   ../../../resources/common/tag_logging.robot
 
 10 - Adcionar webhook ao documento
     [Documentation]    Adição de link de webhook ao documento e verificação de sucesso
-    [Tags]    ${API_TAG}    ${REGRESSION_TAG}
+    [Tags]    api    regression
     Log API Test Info    Iniciando adição de webhook ao documento
     ${response}=    Adicionar Webhook Ao Documento
     ...    ${UUID_DOC_WEBHOOK}
@@ -424,7 +424,7 @@ Resource   ../../../resources/common/tag_logging.robot
 
 11 - Criar documento Template HTML
     [Documentation]    Valida a criação de um documento usando um template HTML e variáveis específicas.
-    [Tags]    ${API_TAG}    ${TEMPLATE_TAG}    ${REGRESSION_TAG}
+    [Tags]    api    template    regression
     Log Template Test Info    Iniciando criação de documento via template HTML
     ${response}=    Gerar Documento Via Template HTML
     ...    ${TOKEN_API}
