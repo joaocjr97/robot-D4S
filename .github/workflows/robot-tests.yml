@@ -13,10 +13,10 @@ on:
       environment:
         description: 'Ambiente para executar os testes'
         required: true
-        default: 'dev'
+        default: 'prod'
         type: choice
         options:
-        - dev
+        - homol
         - staging
         - prod
       test_suite:
@@ -72,8 +72,6 @@ jobs:
     if: github.event.inputs.test_suite == 'all' || github.event.inputs.test_suite == 'api' || github.event.inputs.test_suite == 'smoke'
     strategy:
       fail-fast: false
-      matrix:
-        environment: [dev, staging]
     steps:
       - name: 📥 Checkout code
         uses: actions/checkout@v4
@@ -122,8 +120,6 @@ jobs:
     if: github.event.inputs.test_suite == 'all' || github.event.inputs.test_suite == 'web' || github.event.inputs.test_suite == 'smoke'
     strategy:
       fail-fast: false
-      matrix:
-        environment: [dev, staging]
     steps:
       - name: 📥 Checkout code
         uses: actions/checkout@v4
@@ -182,8 +178,6 @@ jobs:
     if: github.event.inputs.test_suite == 'all' || github.event.inputs.test_suite == 'smoke'
     strategy:
       fail-fast: false
-      matrix:
-        environment: [dev, staging]
     steps:
       - name: 📥 Checkout code
         uses: actions/checkout@v4
