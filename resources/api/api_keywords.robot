@@ -4,7 +4,6 @@ Library    RequestsLibrary
 Library    String
 Library    Collections
 Library    OperatingSystem
-Library    SeleniumLibrary
 Resource         ../config/config_environment.robot
 Resource         ../config/config_sensitive.robot
 Resource         ../common/variables.robot

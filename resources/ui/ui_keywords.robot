@@ -8,7 +8,7 @@ Resource   ../config/config_environment.robot
 *** Keywords ***
 Test Setup
     [Documentation]    Setup comum para todos os testes
-    [Arguments]    ${browser_type}=${BROWSER_HEADLESS}    ${set_cookie}=${cookie_script}
+    [Arguments]    ${browser_type}=${BROWSER_HEADLESS}    ${set_cookie}=${cookie_script}    ${setcookie_language}=document.cookie = "contratoazul_language=pt"
     
     # Configurações iniciais
     Set Log Level    ${LOG_LEVEL}
@@ -32,7 +32,7 @@ Test Setup
     Set Log Level    ${LOG_LEVEL}
 
     # Login no sistema
-    Login D4Sign    ${browser_type}    ${set_cookie}
+    Login D4Sign    ${browser_type}    ${set_cookie}    ${setcookie_language}
 
 Test Teardown
     [Documentation]    Teardown comum para todos os testes
@@ -52,11 +52,12 @@ Suite Teardown
 
 Login D4Sign
     [Documentation]    Realiza login no sistema D4Sign
-    [Arguments]    ${BROWSER_HEADLESS}    ${set_cookie}
+    [Arguments]    ${BROWSER_HEADLESS}    ${set_cookie}    ${setcookie_language}
     
     Open Browser    ${URL}    ${BROWSER_HEADLESS}
     Set Window Size    1920    1080
     Execute Javascript    ${set_cookie}
+    Execute Javascript    ${setcookie_language}
     Wait Until Element Is Visible   ${Email}     ${TIMEOUT}
     Input Text                      ${Email}     ${USERNAME}
     Input Text                      ${Passwd}    ${PASSWORD}

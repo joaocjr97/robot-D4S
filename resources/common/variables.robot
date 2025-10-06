@@ -15,7 +15,8 @@ ${WINDOW_SIZE}       --window-size=1920,1080
 ${CHROME_OPTIONS}    add_argument(--headless),add_argument(--window-size=1920,1080)
 
 # JavaScript para configurações
-${cookie_script}        d4sign_ai_cofre = "1"
+${cookie_script}            d4sign_ai_cofre = "1"
+${setcookie_language}       document.cookie = "contratoazul_language=pt"
 
 # =============================================================================
 # ELEMENTOS DE LOGIN
