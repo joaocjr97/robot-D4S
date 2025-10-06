@@ -66,8 +66,10 @@ pip install robotframework-jsonlibrary
 
 ### 4. Configure os dados sensíveis
 
-Edite o arquivo `resources/config/config_sensitive.robot` com suas credenciais da API D4Sign:
+**IMPORTANTE**: O arquivo `config_sensitive.robot` contém dados sensíveis e não está no repositório por segurança.
 
+
+2. **Edite o arquivo com suas credenciais reais:**
 ```robot
 *** Variables ***
 # Credenciais de login

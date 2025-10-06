@@ -12,7 +12,8 @@ results/*.xml
 *.tmp
 *.temp
 
-# Arquivos de configuração sensíveis (se não estiverem em config_sensitive.robot)
+# Arquivos de configuração sensíveis
+resources/config/config_sensitive.robot
 config_sensitive.robot
 
 # Logs do sistema
