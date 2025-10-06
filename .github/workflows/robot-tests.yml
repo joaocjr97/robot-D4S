@@ -101,6 +101,11 @@ jobs:
             --variable TOKEN_API:${{ secrets.TOKEN_API }} \
             --variable CRYPT_KEY:${{ secrets.CRYPT_KEY }} \
             --variable EMAIL_TESTE:${{ secrets.EMAIL_TESTE }} \
+            --variable API_TAG:api \
+            --variable SMOKE_TAG:smoke \
+            --variable CRITICAL_TAG:critical \
+            --variable UPLOAD_TAG:upload \
+            --variable UI_TAG:ui \
             --include api \
             tests/api/
 
@@ -159,6 +164,11 @@ jobs:
             --variable PASSWORD:${{ secrets.PASSWORD }} \
             --variable EMAIL_TESTE:${{ secrets.EMAIL_TESTE }} \
             --variable BROWSER_MODE:headless \
+            --variable API_TAG:api \
+            --variable SMOKE_TAG:smoke \
+            --variable CRITICAL_TAG:critical \
+            --variable UPLOAD_TAG:upload \
+            --variable UI_TAG:ui \
             --include web \
             tests/web/
 
@@ -194,7 +204,7 @@ jobs:
           echo "### 🧪 Test Results by Environment:" >> reports/summary/README.md
           
           # Processar resultados por ambiente
-          for env in dev staging; do
+          for env in homol staging; do
             echo "" >> reports/summary/README.md
             echo "#### 🌍 Environment: $env" >> reports/summary/README.md
             echo "" >> reports/summary/README.md
