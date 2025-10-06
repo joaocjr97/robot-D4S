@@ -292,14 +292,26 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const fs = require('fs');
-            let comment = '## Robot Framework Test Results\n\n';
-            
-            comment += `- **API Tests**: ${{ needs.api-tests.result == 'success' ? '✅ Passed' : needs.api-tests.result == 'failure' ? '❌ Failed' : '⏭️ Skipped' }}\n`;
-            comment += `- **Web Tests**: ${{ needs.web-tests.result == 'success' ? '✅ Passed' : needs.web-tests.result == 'failure' ? '❌ Failed' : '⏭️ Skipped' }}\n`;
-            comment += `- **Combined Tests**: ${{ needs.combined-tests.result == 'success' ? '✅ Passed' : needs.combined-tests.result == 'failure' ? '❌ Failed' : '⏭️ Skipped' }}\n\n`;
-            
-            comment += `🔗 [View detailed results](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})\n`;
+  let comment = '## Robot Framework Test Results\n\n';
+  
+  function getStatus(status) {
+      if (status === 'success') return '✅ Passed';
+      if (status === 'failure') return '❌ Failed';
+      return '⏭️ Skipped';
+  }
+
+  comment += `- **API Tests**: ${getStatus(needs['api-tests'].result)}\n`;
+  comment += `- **Web Tests**: ${getStatus(needs['web-tests'].result)}\n`;
+  comment += `- **Combined Tests**: ${getStatus(needs['combined-tests'].result)}\n\n`;
+
+  comment += `🔗 [View detailed results](${github.server_url}/${github.repository}/actions/runs/${github.run_id})\n`;
+
+  github.rest.issues.createComment({
+    issue_number: context.issue.number,
+    owner: context.repo.owner,
+    repo: context.repo.repo,
+    body: comment
+  });
             
             github.rest.issues.createComment({
               issue_number: context.issue.number,
