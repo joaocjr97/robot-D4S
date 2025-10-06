@@ -55,7 +55,6 @@ jobs:
           pip install robotframework
           pip install robotframework-seleniumlibrary
           pip install robotframework-faker
-          pip install robotframework-operatingsystem
           pip install robotframework-requests
           pip install robotframework-jsonlibrary
           pip install robotframework-lint
@@ -140,7 +139,6 @@ jobs:
           pip install robotframework==${{ env.ROBOT_FRAMEWORK_VERSION }}
           pip install robotframework-seleniumlibrary
           pip install robotframework-faker
-          pip install robotframework-operatingsystem
 
       - name: 🌐 Set up Chrome
         uses: browser-actions/setup-chrome@v1
@@ -201,7 +199,6 @@ jobs:
           pip install robotframework==${{ env.ROBOT_FRAMEWORK_VERSION }}
           pip install robotframework-seleniumlibrary
           pip install robotframework-faker
-          pip install robotframework-operatingsystem
           pip install robotframework-requests
           pip install robotframework-jsonlibrary
 
