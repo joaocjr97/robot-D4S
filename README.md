@@ -14,8 +14,7 @@ Este projeto contém scripts de automação de testes utilizando o [Robot Framew
 - [Estrutura do Projeto](#-estrutura-do-projeto)
 - [Bibliotecas Utilizadas](#-bibliotecas-utilizadas)
 - [Relatórios](#-relatórios)
-- [Novidades da Nova Estrutura](#-novidades-da-nova-estrutura)
-- [Arquivos de Exemplo](#-arquivos-de-exemplo)
+- [Estrutura Organizada do Projeto](#-estrutura-organizada-do-projeto)
 
 ## 🔧 Pré-requisitos
 
@@ -90,52 +89,55 @@ ${EMAIL_TESTE}       email_para_testes@exemplo.com
 
 ## ▶️ Executando os Testes
 
-### Executar todos os testes (Smoke + API)
+### Executar todos os testes (Web + API)
 
 ```bash
 # Executar todos os testes do projeto
-robot --outputdir reports/combined tests/
+robot --outputdir results tests/
 ```
 
-### Executar todos os testes Smoke
+### Executar todos os testes Web
 
 ```bash
-# Executar todos os testes de smoke
-robot --outputdir reports/smoke tests/smoke/
+# Executar todos os testes web
+robot --outputdir results tests/web/
 ```
 
 ### Executar todos os testes de API
 
 ```bash
 # Executar todos os testes de API
-robot --outputdir reports/api tests/api/
+robot --outputdir results tests/api/
 ```
 
 ### Executar teste específico
 
 ```bash
 # Executar teste específico de UI
-robot --outputdir reports/smoke tests/smoke/ui/01-busca-signatario.robot
+robot --outputdir results tests/web/ui/busca-signatario.robot
+
+# Executar teste específico de envio
+robot --outputdir results tests/web/envios/envio-assinatura.robot
 
 # Executar teste específico de API
-robot --outputdir reports/api tests/api/posts/Posts-API.robot
+robot --outputdir results tests/api/posts/Posts-API.robot
 ```
 
 ### Executar com tags específicas
 
 ```bash
-# Executar apenas testes com tag 'smoke'
-robot --include smoke --outputdir reports/combined tests/
+# Executar apenas testes com tag 'web'
+robot --include web --outputdir results tests/
 
 # Executar apenas testes com tag 'api'
-robot --include api --outputdir reports/combined tests/
+robot --include api --outputdir results tests/
 
 # Executar apenas testes críticos
-robot --include critical --outputdir reports/combined tests/
+robot --include critical --outputdir results tests/
 
 # Executar testes por categoria
-robot --include upload --outputdir reports/smoke tests/smoke/
-robot --include signature --outputdir reports/smoke tests/smoke/
+robot --include ui --outputdir results tests/web/
+robot --include envio --outputdir results tests/web/
 ```
 
 ## 🔌 Testes de API
@@ -146,10 +148,10 @@ O projeto inclui testes automatizados para a API da D4Sign, validando endpoints 
 
 ```bash
 # Testes de POST (Upload e operações)
-robot --outputdir reports/api tests/api/posts/Posts-API.robot
+robot --outputdir results tests/api/posts/Posts-API.robot
 
 # Testes de GET (Listagens)
-robot --outputdir reports/api tests/api/gets/Listagens-API.robot
+robot --outputdir results tests/api/gets/Listagens-API.robot
 ```
 
 ### Testes de API Disponíveis
@@ -234,27 +236,21 @@ robot-D4S/
 │   │   └── posts/              # Testes de POST (Upload, criação)
 │   │       └── Posts-API.robot
 │   │
-│   └── smoke/                  # Testes de smoke organizados por funcionalidade
+│   └── web/                    # Testes web organizados por funcionalidade
 │       ├── ui/                 # Testes de interface do usuário
-│       │   ├── 01-busca-signatario.robot
-│       │   ├── 02-busca-tags.robot
-│       │   └── 03-listar-fases.robot
+│       │   ├── busca-signatario.robot
+│       │   ├── busca-tags.robot
+│       │   ├── criar-cofre.robot
+│       │   └── listar-fases.robot
 │       │
-│       ├── upload/             # Testes de upload
-│       │   ├── 04-criar-cofre.robot
-│       │   ├── 05-envio-desk.robot
-│       │   └── 06-envio-cofre.robot
-│       │
-│       ├── signature/          # Testes de assinatura
-│       │   ├── 07-envio-assinatura.robot
-│       │   ├── 08-envio-grupo-assinatura.robot
-│       │   └── 13-assinatura-lote.robot
-│       │
-│       └── templates/          # Testes de templates
-│           ├── 09-envio-template-html.robot
-│           ├── 10-envio-template-word.robot
-│           ├── 11-envio-lote.robot
-│           └── 12-envio-powerform.robot
+│       └── envios/             # Testes de envios e assinaturas
+│           ├── envio-assinatura.robot
+│           ├── envio-cofre.robot
+│           ├── envio-desk.robot
+│           ├── envio-grupo-assinatura.robot
+│           ├── envio-lote.robot
+│           ├── envio-powerform.robot
+│           └── envio-template-html.robot
 │
 ├── resources/                  # Recursos organizados por contexto
 │   ├── api/                    # Recursos específicos para API
@@ -262,7 +258,8 @@ robot-D4S/
 │   │
 │   ├── common/                 # Recursos compartilhados
 │   │   ├── variables.robot
-│   │   └── tag_logging.robot
+│   │   ├── tag_logging.robot
+│   │   └── retry_utils.robot
 │   │
 │   ├── config/                 # Configurações
 │   │   ├── config_environment.robot
@@ -272,27 +269,21 @@ robot-D4S/
 │       └── ui_keywords.robot
 │
 ├── data/                       # Dados e arquivos de teste
-│   ├── files/                  # Arquivos de teste
-│   │   ├── doc-testes.pdf
-│   │   └── planilha.xlsx
-│   └── test_data/              # Dados de teste estruturados
+│   └── files/                  # Arquivos de teste
+│       ├── doc-testes.pdf
+│       └── planilha.xlsx
 │
-├── reports/                    # Relatórios organizados por categoria
-│   ├── api/                    # Relatórios de testes de API
-│   ├── smoke/                  # Relatórios de smoke tests
-│   └── combined/               # Relatórios combinados
-│       ├── log.html
-│       ├── output.xml
-│       └── report.html
+├── results/                    # Relatórios de execução
+│   ├── log.html
+│   ├── output.xml
+│   └── report.html
 │
 ├── docs/                       # Documentação do projeto
-│   ├── README.md               # Este arquivo
-│   ├── NOVA_ESTRUTURA.md       # Documentação da nova estrutura
-│   ├── ESTRUTURA_RESOURCES.md  # Documentação dos recursos
-│   └── GUIA_TAGS.md            # Guia de uso de tags
+│   └── GUIA_TAGS_AMBIENTES.md  # Guia de tags e ambientes
 │
-├── .gitignore                  # Configurações do Git
-└── to do API.txt              # Lista de tarefas
+├── README.md                   # Este arquivo
+├── requirements.txt            # Dependências do projeto
+└── .gitignore                  # Configurações do Git
 ```
 
 ## 📚 Bibliotecas Utilizadas
@@ -309,55 +300,43 @@ robot-D4S/
 
 ## 📊 Relatórios
 
-Após a execução dos testes, os relatórios são gerados organizados por categoria:
+Após a execução dos testes, os relatórios são gerados na pasta `results/`:
 
 ### **Estrutura de Relatórios:**
 
-#### **reports/combined/** - Relatórios Combinados
-- **`report.html`** - Relatório principal com resumo de todos os testes
+#### **results/** - Relatórios de Execução
+- **`report.html`** - Relatório principal com resumo dos testes executados
 - **`log.html`** - Log detalhado da execução completa
 - **`output.xml`** - Arquivo XML com dados estruturados dos testes
-
-#### **reports/api/** - Relatórios de API
-- Relatórios específicos dos testes de API
-- Logs detalhados das requisições HTTP
-
-#### **reports/smoke/** - Relatórios de Smoke Tests
-- Relatórios específicos dos smoke tests
-- Logs detalhados das interações com a UI
 
 ### **Visualização dos Relatórios:**
 
 ```bash
-# Abrir relatório combinado
-start reports/combined/report.html
+# Abrir relatório principal
+start results/report.html
 
-# Abrir relatório de API
-start reports/api/report.html
-
-# Abrir relatório de smoke tests
-start reports/smoke/report.html
+# Abrir log detalhado
+start results/log.html
 ```
 
 ### **Tags nos Relatórios:**
 
 Os relatórios incluem sistema de tags para facilitar a análise:
 
-- **🔥 smoke** - Testes de smoke
-- **🌐 api** - Testes de API
-- **🖥️ ui** - Testes de interface
+- **🌐 web** - Testes web (interface e funcionalidades)
+- **🔌 api** - Testes de API
+- **🖥️ ui** - Testes de interface do usuário
+- **📤 envio** - Testes de envios e assinaturas
 - **⚠️ critical** - Testes críticos
-- **📤 upload** - Testes de upload
-- **✍️ signature** - Testes de assinatura
-- **📄 template** - Testes de template
-- **📦 batch** - Testes de lote
+- **📄 template** - Testes de templates
+- **📦 lote** - Testes de processamento em lote
 
-## 🚀 Novidades da Nova Estrutura
+## 🚀 Estrutura Organizada do Projeto
 
 ### **✅ Benefícios da Organização:**
 
 #### **📁 Separação por Contexto:**
-- **UI Tests**: Organizados por funcionalidade (ui, upload, signature, templates)
+- **Web Tests**: Organizados por funcionalidade (ui, envios)
 - **API Tests**: Separados por operação (gets, posts)
 - **Resources**: Organizados por contexto (common, config, ui, api)
 
@@ -367,25 +346,25 @@ Os relatórios incluem sistema de tags para facilitar a análise:
 - Execução seletiva por categoria
 - Relatórios organizados por tag
 
-#### **📊 Relatórios Organizados:**
-- Relatórios separados por tipo de teste
-- Relatórios combinados para visão geral
+#### **📊 Relatórios Centralizados:**
+- Relatórios unificados na pasta `results/`
 - Logs detalhados por categoria
+- Visualização simplificada dos resultados
 
 #### **🔧 Configuração Modular:**
 - Configurações de ambiente centralizadas
 - Recursos específicos por contexto
 - Dependências claras entre arquivos
 
-### **🎯 Como Usar a Nova Estrutura:**
+### **🎯 Como Usar a Estrutura:**
 
 #### **Executar por Categoria:**
 ```bash
 # Apenas testes de UI
-robot --include ui tests/smoke/
+robot --include ui tests/web/
 
-# Apenas testes de upload
-robot --include upload tests/smoke/
+# Apenas testes de envios
+robot --include envio tests/web/
 
 # Apenas testes de API
 robot --include api tests/api/
@@ -415,34 +394,6 @@ robot --variable DEBUG_MODE:true tests/
 robot --variable DEBUG_API_CALLS:true tests/api/
 ```
 
-## 📝 Arquivos de Exemplo
-
-O projeto inclui arquivos de exemplo na raiz para demonstrar funcionalidades:
-
-### **exemplo_simples_ambiente.robot**
-- Demonstra configuração básica de ambiente
-- Exemplo de uso das variáveis de configuração
-
-### **exemplo_teste_ambientes.robot**
-- Exemplo completo de teste com múltiplos ambientes
-- Demonstra uso de retry e configurações avançadas
-
-### **exemplo_tags_implementadas.robot**
-- Exemplo de implementação do sistema de tags
-- Demonstra logs específicos por categoria
-
-### **Como Executar os Exemplos:**
-
-```bash
-# Executar exemplo simples
-robot exemplo_simples_ambiente.robot
-
-# Executar exemplo de ambientes
-robot exemplo_teste_ambientes.robot
-
-# Executar exemplo de tags
-robot exemplo_tags_implementadas.robot
-```
 
 
 ---
