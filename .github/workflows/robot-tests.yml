@@ -28,7 +28,6 @@ on:
         - all
         - api
         - web
-        - smoke
 
 env:
   PYTHON_VERSION: '3.9'
@@ -69,7 +68,7 @@ jobs:
     name: 🌐 API Tests
     runs-on: ubuntu-latest
     needs: code-quality
-    if: github.event.inputs.test_suite == 'all' || github.event.inputs.test_suite == 'api' || github.event.inputs.test_suite == 'smoke'
+    if: github.event.inputs.test_suite == 'all' || github.event.inputs.test_suite == 'api'
     strategy:
       fail-fast: false
     steps:
@@ -117,7 +116,7 @@ jobs:
     name: 🖥️ Web Tests
     runs-on: ubuntu-latest
     needs: code-quality
-    if: github.event.inputs.test_suite == 'all' || github.event.inputs.test_suite == 'web' || github.event.inputs.test_suite == 'smoke'
+    if: github.event.inputs.test_suite == 'all' || github.event.inputs.test_suite == 'web'
     strategy:
       fail-fast: false
     steps:
@@ -170,75 +169,11 @@ jobs:
           name: web-test-results-${{ matrix.environment }}
           path: results/web/${{ matrix.environment }}/
 
-  # Job para execução combinada (todos os testes)
-  combined-tests:
-    name: 🔄 Combined Tests
-    runs-on: ubuntu-latest
-    needs: [api-tests, web-tests]
-    if: github.event.inputs.test_suite == 'all' || github.event.inputs.test_suite == 'smoke'
-    strategy:
-      fail-fast: false
-    steps:
-      - name: 📥 Checkout code
-        uses: actions/checkout@v4
-
-      - name: 🐍 Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: ${{ env.PYTHON_VERSION }}
-
-      - name: 📦 Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install robotframework==${{ env.ROBOT_FRAMEWORK_VERSION }}
-          pip install robotframework-seleniumlibrary
-          pip install robotframework-faker
-          pip install robotframework-requests
-          pip install robotframework-jsonlibrary
-
-      - name: 🌐 Set up Chrome
-        uses: browser-actions/setup-chrome@v1
-        with:
-          chrome-version: ${{ env.CHROME_VERSION }}
-
-      - name: 📦 Set up ChromeDriver
-        uses: nanasess/setup-chromedriver@v2
-
-      - name: 🧪 Run All Tests
-        env:
-          ENVIRONMENT: ${{ matrix.environment }}
-          USERNAME: ${{ secrets.USERNAME }}
-          PASSWORD: ${{ secrets.PASSWORD }}
-          EMAIL_TESTE: ${{ secrets.EMAIL_TESTE }}
-          TOKEN_API: ${{ secrets.TOKEN_API }}
-          CRYPT_KEY: ${{ secrets.CRYPT_KEY }}
-          BROWSER_MODE: headless
-        run: |
-          mkdir -p results/combined/${{ matrix.environment }}
-          robot \
-            --outputdir results/combined/${{ matrix.environment }} \
-            --variable ENVIRONMENT:${{ matrix.environment }} \
-            --variable USERNAME:${{ secrets.USERNAME }} \
-            --variable PASSWORD:${{ secrets.PASSWORD }} \
-            --variable EMAIL_TESTE:${{ secrets.EMAIL_TESTE }} \
-            --variable TOKEN_API:${{ secrets.TOKEN_API }} \
-            --variable CRYPT_KEY:${{ secrets.CRYPT_KEY }} \
-            --variable BROWSER_MODE:headless \
-            --include smoke \
-            tests/
-
-      - name: 📊 Upload Combined Test Results
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: combined-test-results-${{ matrix.environment }}
-          path: results/combined/${{ matrix.environment }}/
-
   # Job para geração de relatórios
   generate-reports:
     name: 📊 Generate Reports
     runs-on: ubuntu-latest
-    needs: [api-tests, web-tests, combined-tests]
+    needs: [api-tests, web-tests]
     if: always()
     steps:
       - name: 📥 Checkout code
@@ -277,13 +212,6 @@ jobs:
               echo "- Results: [View Web Report](./web-test-results-$env/report.html)" >> reports/summary/README.md
               echo "" >> reports/summary/README.md
             fi
-            
-            # Combined Results
-            if [ -d "artifacts/combined-test-results-$env" ]; then
-              echo "**🔄 Combined Tests:**" >> reports/summary/README.md
-              echo "- Results: [View Combined Report](./combined-test-results-$env/report.html)" >> reports/summary/README.md
-              echo "" >> reports/summary/README.md
-            fi
           done
 
       - name: 📊 Upload Summary Report
@@ -311,7 +239,7 @@ jobs:
       - name: 📧 Send notification
         run: |
           # Verificar status dos jobs
-          if [ "${{ needs.api-tests.result }}" == "failure" ] || [ "${{ needs.web-tests.result }}" == "failure" ] || [ "${{ needs.combined-tests.result }}" == "failure" ]; then
+          if [ "${{ needs.api-tests.result }}" == "failure" ] || [ "${{ needs.web-tests.result }}" == "failure" ]; then
             echo "❌ Some tests failed!"
             echo "🔗 Check the workflow run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           else
@@ -333,8 +261,7 @@ jobs:
             }
             
             comment += `- **API Tests**: ${getStatus('${{ needs.api-tests.result }}')}\n`;
-            comment += `- **Web Tests**: ${getStatus('${{ needs.web-tests.result }}')}\n`;
-            comment += `- **Combined Tests**: ${getStatus('${{ needs.combined-tests.result }}')}\n\n`;
+            comment += `- **Web Tests**: ${getStatus('${{ needs.web-tests.result }}')}\n\n`;
             
             comment += `🔗 [View detailed results](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})\n`;
             
