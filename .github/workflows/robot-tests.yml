@@ -2,9 +2,9 @@ name: 🤖 Robot Framework Tests
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [ main ] # homol, dev, prod, hotfix
   pull_request:
-    branches: [ main, develop ]
+    branches: [ main ]
   schedule:
     # Executa testes todos os dias às 2h UTC (23h BRT)
     - cron: '0 2 * * *'
@@ -27,7 +27,7 @@ on:
         options:
         - all
         - api
-        - ui
+        - web
 
 env:
   PYTHON_VERSION: '3.9'
@@ -35,7 +35,9 @@ env:
   ROBOT_FRAMEWORK_VERSION: '6.0.2'
 
 jobs:
-  # Job para validação de qualidade do código
+  # Job para validação de qualidade do código de testes. 
+  # Verifica se os testes estão seguindo as boas práticas de Robot Framework.
+  # Lança comentários, mas não impede a execução dos testes.
   code-quality:
     name: 🔍 Code Quality Check
     runs-on: ubuntu-latest
@@ -118,10 +120,10 @@ jobs:
 
   # Job para testes Web
   web-tests:
-    name: 🖥️ UI Tests
+    name: 🖥️ Web Tests
     runs-on: ubuntu-latest
     needs: code-quality
-    if: github.event.inputs.test_suite == 'all' || github.event.inputs.test_suite == 'ui'
+    if: github.event.inputs.test_suite == 'all' || github.event.inputs.test_suite == 'Web'
     strategy:
       fail-fast: false
     steps:
@@ -212,8 +214,8 @@ jobs:
           
           # Web Results
           if [ -d "artifacts/web-test-results" ]; then
-            echo "**🖥️ UI Tests:**" >> reports/summary/README.md
-            echo "- Results: [View UI Report](./web-test-results/report.html)" >> reports/summary/README.md
+            echo "**🖥️ Web Tests:**" >> reports/summary/README.md
+            echo "- Results: [View Web Report](./web-test-results/report.html)" >> reports/summary/README.md
             echo "" >> reports/summary/README.md
           fi
 
@@ -264,7 +266,7 @@ jobs:
             }
             
             comment += `- **API Tests**: ${getStatus('${{ needs.api-tests.result }}')}\n`;
-            comment += `- **UI Tests**: ${getStatus('${{ needs.web-tests.result }}')}\n\n`;
+            comment += `- **Web Tests**: ${getStatus('${{ needs.web-tests.result }}')}\n\n`;
             
             comment += `🔗 [View detailed results](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})\n`;
             

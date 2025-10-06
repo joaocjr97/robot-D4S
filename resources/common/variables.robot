@@ -21,7 +21,7 @@ ${setcookie_language}       document.cookie = "contratoazul_language=pt"
 # =============================================================================
 # ELEMENTOS DE LOGIN
 # =============================================================================
-
+${idioma}            //*[@id="ptLanguage"]
 ${Email}             id=Email
 ${Passwd}            id=Passwd
 ${logar}             id=logar

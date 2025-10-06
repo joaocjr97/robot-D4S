@@ -54,11 +54,12 @@ Login D4Sign
     [Documentation]    Realiza login no sistema D4Sign
     [Arguments]    ${BROWSER_HEADLESS}    ${set_cookie}    ${setcookie_language}
     
-    Open Browser    ${URL}    ${BROWSER_HEADLESS}
-    Set Window Size    1920    1080
-    Execute Javascript    ${set_cookie}
-    Execute Javascript    ${setcookie_language}
+    Open Browser                    ${URL}    ${BROWSER_HEADLESS}
+    Set Window Size                 1920    1080
+    Execute Javascript              ${set_cookie}
+    Execute Javascript              ${setcookie_language}
     Wait Until Element Is Visible   ${Email}     ${TIMEOUT}
+    Click Element                   ${idioma}
     Input Text                      ${Email}     ${USERNAME}
     Input Text                      ${Passwd}    ${PASSWORD}
     Click Button                    ${logar}
