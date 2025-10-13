@@ -98,6 +98,8 @@ jobs:
           sed -i "s/\${CRYPT_KEY_SECRET}/${{ secrets.CRYPT_KEY }}/g" resources/config/config_sensitive.robot
           sed -i "s/\${EMAIL_TESTE_SECRET}/${{ secrets.EMAIL_TESTE }}/g" resources/config/config_sensitive.robot
           sed -i "s/\${ENVIRONMENT_SECRET}/${{ github.event.inputs.environment || 'prod' }}/g" resources/config/config_sensitive.robot
+          echo "🔍 Debug: Verificando arquivo config_sensitive.robot criado:"
+          cat resources/config/config_sensitive.robot
 
       - name: 🧪 Run API Tests
         env:
@@ -107,12 +109,21 @@ jobs:
           EMAIL_TESTE: ${{ secrets.EMAIL_TESTE }}
         run: |
           mkdir -p results/api/
+          echo "🔍 Debug: Verificando se o arquivo config_sensitive.robot existe e tem o conteúdo correto:"
+          if [ -f "resources/config/config_sensitive.robot" ]; then
+            echo "✅ Arquivo config_sensitive.robot existe"
+            echo "📄 Conteúdo do arquivo:"
+            cat resources/config/config_sensitive.robot
+          else
+            echo "❌ Arquivo config_sensitive.robot não existe!"
+            exit 1
+          fi
+          echo "🔍 Debug: Verificando se os secrets estão definidos:"
+          echo "TOKEN_API definido: $([ -n "$TOKEN_API" ] && echo "✅ Sim" || echo "❌ Não")"
+          echo "CRYPT_KEY definido: $([ -n "$CRYPT_KEY" ] && echo "✅ Sim" || echo "❌ Não")"
+          echo "EMAIL_TESTE definido: $([ -n "$EMAIL_TESTE" ] && echo "✅ Sim" || echo "❌ Não")"
           robot \
             --outputdir results/api/ \
-            --variable ENVIRONMENT:${{ github.event.inputs.environment || 'prod' }} \
-            --variable TOKEN_API:${{ secrets.TOKEN_API }} \
-            --variable CRYPT_KEY:${{ secrets.CRYPT_KEY }} \
-            --variable EMAIL_TESTE:${{ secrets.EMAIL_TESTE }} \
             --variable API_TAG:api \
             --variable SMOKE_TAG:smoke \
             --variable CRITICAL_TAG:critical \
