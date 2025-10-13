@@ -68,6 +68,12 @@ pip install robotframework-jsonlibrary
 
 **IMPORTANTE**: O arquivo `config_sensitive.robot` contém dados sensíveis e não está no repositório por segurança.
 
+#### **Para desenvolvimento local:**
+
+1. **Copie o template:**
+```bash
+cp resources/config/config_sensitive.template.robot resources/config/config_sensitive.robot
+```
 
 2. **Edite o arquivo com suas credenciais reais:**
 ```robot
@@ -83,6 +89,21 @@ ${CRYPT_KEY}         sua_crypt_key_aqui
 # Dados de teste específicos
 ${EMAIL_TESTE}       email_para_testes@exemplo.com
 ```
+
+#### **Para GitHub Actions:**
+
+O arquivo `config_sensitive.robot` é criado automaticamente durante a execução dos testes usando os **GitHub Secrets**:
+
+1. **Configure os secrets no GitHub:**
+   - Vá em **Settings** → **Secrets and variables** → **Actions**
+   - Adicione os seguintes secrets:
+     - `USERNAME`: Seu email de login
+     - `PASSWORD`: Sua senha
+     - `TOKEN_API`: Token da API D4Sign
+     - `CRYPT_KEY`: Chave de criptografia
+     - `EMAIL_TESTE`: Email para testes
+
+2. **O workflow criará automaticamente o arquivo** durante a execução dos testes.
 
 ### 5. Configure o ChromeDriver
 

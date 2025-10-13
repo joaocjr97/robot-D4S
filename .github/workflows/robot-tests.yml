@@ -89,6 +89,16 @@ jobs:
           pip install robotframework-requests
           pip install robotframework-jsonlibrary
 
+      - name: 🔧 Create config_sensitive.robot
+        run: |
+          cp resources/config/config_sensitive.template.robot resources/config/config_sensitive.robot
+          sed -i "s/\${USERNAME_SECRET}/${{ secrets.USERNAME }}/g" resources/config/config_sensitive.robot
+          sed -i "s/\${PASSWORD_SECRET}/${{ secrets.PASSWORD }}/g" resources/config/config_sensitive.robot
+          sed -i "s/\${TOKEN_API_SECRET}/${{ secrets.TOKEN_API }}/g" resources/config/config_sensitive.robot
+          sed -i "s/\${CRYPT_KEY_SECRET}/${{ secrets.CRYPT_KEY }}/g" resources/config/config_sensitive.robot
+          sed -i "s/\${EMAIL_TESTE_SECRET}/${{ secrets.EMAIL_TESTE }}/g" resources/config/config_sensitive.robot
+          sed -i "s/\${ENVIRONMENT_SECRET}/${{ github.event.inputs.environment || 'prod' }}/g" resources/config/config_sensitive.robot
+
       - name: 🧪 Run API Tests
         env:
           ENVIRONMENT: ${{ github.event.inputs.environment || 'prod' }}
@@ -149,6 +159,16 @@ jobs:
 
       - name: 📦 Set up ChromeDriver
         uses: nanasess/setup-chromedriver@v2
+
+      - name: 🔧 Create config_sensitive.robot
+        run: |
+          cp resources/config/config_sensitive.template.robot resources/config/config_sensitive.robot
+          sed -i "s/\${USERNAME_SECRET}/${{ secrets.USERNAME }}/g" resources/config/config_sensitive.robot
+          sed -i "s/\${PASSWORD_SECRET}/${{ secrets.PASSWORD }}/g" resources/config/config_sensitive.robot
+          sed -i "s/\${TOKEN_API_SECRET}/${{ secrets.TOKEN_API }}/g" resources/config/config_sensitive.robot
+          sed -i "s/\${CRYPT_KEY_SECRET}/${{ secrets.CRYPT_KEY }}/g" resources/config/config_sensitive.robot
+          sed -i "s/\${EMAIL_TESTE_SECRET}/${{ secrets.EMAIL_TESTE }}/g" resources/config/config_sensitive.robot
+          sed -i "s/\${ENVIRONMENT_SECRET}/${{ github.event.inputs.environment || 'prod' }}/g" resources/config/config_sensitive.robot
 
       - name: 🧪 Run Web Tests
         env:
