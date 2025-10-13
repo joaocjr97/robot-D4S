@@ -273,6 +273,43 @@ ${RESTAURANT_VAR}         Restaurante Fictício
 ${EMAIL_INICIAL}     primeiro.email.teste@robot.com
 ${EMAIL_ALTERADO}    signatario.alterado@teste.com
 ${WHATSAPP_TESTE}    5511954976905
+
+# =============================================================================
+# CONFIGURAÇÕES DE PINS E CANVAS
+# =============================================================================
+
+# Elementos de carregamento de documentos
+${carregandoDocumento}        //*[@id="doc-div-principal"]/div/img
+${carregandoAnexo}            //*[@id="progress"]/div
+${Addanexo}                   //*[@id="id-adicionar-mais-doc"]/img
+${docsCarregados}             //*[@id="documentosCarregadosDiv"]
+
+# Canvas elements
+${canvas1}                    //*[@id="canvas1"]
+${canvas2}                    //*[@id="canvas2"]
+${canvas3}                    //*[@id="canvas3"]
+${canvas4}                    //*[@id="canvas4"]
+
+# Botões de interface
+${botaoAnexo}                 //*[@id="btnNovoDoc"]
+${addEmail}                   //*[@id="page-wrapper"]/div[2]/div/div[1]/div/div/div/div[4]/div/div[2]/div[1]/span[1]/a
+
+# Elementos de pin
+${pin1}                       //*[@id="pin-container-for-canvas1"]/div/img
+${pin2}                       //*[@id="pin-container-for-canvas2"]/div/img
+${pin3}                       //*[@id="pin-container-for-canvas3"]/div/img
+${pin4}                       //*[@id="pin-container-for-canvas4"]/div/img
+${btnReplicarPin}             //*[@id="pin-container-for-canvas1"]/div/div[3]/button[1]
+${btnRemoverPin}              //*[@id="pin-container-for-canvas1"]/div/div[3]/button[2]
+
+# Checkboxes e botões de modal
+${checkboxDoc}                //*[@id="input-doc-div-main"]
+${checkboxAnexo}              //*[@id="nomeDocumento"]
+${btnModalPins}               //*[@id="selectAdditionals"]
+
+# Modal de remoção
+${modalRemocaoPin}            //div[contains(@class, 'modal')]//button
+${btnConfirmarRemocao}        //div[@class='modal-body']//button[last()]
 # ==============================================================================
 # DADOS DE TESTE PARA O WEBHOOK
 # ==============================================================================

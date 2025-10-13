@@ -121,6 +121,9 @@ robot --outputdir results tests/web/ui/busca-signatario.robot
 # Executar teste específico de envio
 robot --outputdir results tests/web/envios/envio-assinatura.robot
 
+# Executar teste específico de pin
+robot --outputdir results tests/web/envios/pin.robot
+
 # Executar teste específico de API
 robot --outputdir results tests/api/posts/Posts-API.robot
 ```
@@ -178,6 +181,40 @@ robot --outputdir results tests/api/gets/Listagens-API.robot
 - Listar documentos de um cofre específico
 - Listar webhooks de um documento específico
 - Listar pins do documento
+
+## 📌 Teste de Pin
+
+O projeto inclui um teste específico para validação de funcionalidades de pin no sistema D4Sign.
+
+### **tests/web/envios/pin.robot** - Validação de Pin e Canvas
+
+Este teste valida o funcionamento completo do sistema de pins no documento:
+
+#### **Funcionalidades Testadas:**
+- ✅ Upload de documento principal
+- ✅ Adição de anexo ao documento
+- ✅ Validação de carregamento de canvas (páginas 1, 2, 3, 4)
+- ✅ Adição de pin no documento
+- ✅ Replicação de pin em todas as páginas do documento e anexo
+- ✅ Validação de pin adicionado em todas as páginas
+- ✅ Remoção de pin de todas as páginas
+- ✅ Validação de pin removido de todas as páginas
+
+#### **Cenários de Teste:**
+1. **Carregamento de Documentos**: Verifica se o documento principal e anexo são carregados corretamente
+2. **Validação de Canvas**: Confirma que todos os canvas (páginas) estão disponíveis
+3. **Adição de Pin**: Testa a funcionalidade de adicionar pin no documento
+4. **Replicação de Pin**: Valida a replicação automática do pin em todas as páginas
+5. **Remoção de Pin**: Testa a remoção do pin de todas as páginas com confirmação
+
+#### **Executar o Teste de Pin:**
+```bash
+# Executar teste específico de pin
+robot --outputdir results tests/web/envios/pin.robot
+
+# Executar com logs detalhados
+robot --outputdir results --loglevel DEBUG tests/web/envios/pin.robot
+```
 
 ### Recursos Compartilhados
 
@@ -252,7 +289,9 @@ robot-D4S/
 │           ├── envio-grupo-assinatura.robot
 │           ├── envio-lote.robot
 │           ├── envio-powerform.robot
-│           └── envio-template-html.robot
+│           ├── envio-template-html.robot
+│           └── pin.robot
+|               
 │
 ├── resources/                  # Recursos organizados por contexto
 │   ├── api/                    # Recursos específicos para API
@@ -367,6 +406,9 @@ robot --include ui tests/web/
 
 # Apenas testes de envios
 robot --include envio tests/web/
+
+# Apenas testes de pin
+robot --include pin tests/web/
 
 # Apenas testes de API
 robot --include api tests/api/

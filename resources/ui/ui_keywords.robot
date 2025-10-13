@@ -8,7 +8,7 @@ Resource   ../config/config_environment.robot
 *** Keywords ***
 Test Setup
     [Documentation]    Setup comum para todos os testes
-    [Arguments]    ${browser_type}=${BROWSER_HEADLESS}    ${set_cookie}=${cookie_script}    ${setcookie_language}=document.cookie = "contratoazul_language=pt"
+    [Arguments]    ${browser_type}=${BROWSER}    ${set_cookie}=${cookie_script}    ${setcookie_language}=document.cookie = "contratoazul_language=pt"
     
     # Configurações iniciais
     Set Log Level    ${LOG_LEVEL}
@@ -43,11 +43,11 @@ Test Teardown
 
 Suite Setup
     [Documentation]    Setup da suíte de testes
-    Log    Iniciando execução da suíte de testes    INFO
+    Log    Iniciando execução da suíte de testes    DEBUG
 
 Suite Teardown
     [Documentation]    Teardown da suíte de testes
-    Log    Finalizando execução da suíte de testes    INFO
+    Log    Finalizando execução da suíte de testes    DEBUG
     Close Browser
 
 Login D4Sign
