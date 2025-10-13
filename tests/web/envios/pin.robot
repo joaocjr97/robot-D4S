@@ -44,7 +44,6 @@ Envio - Envio de anexo - Validação de canvas e páginas
     Wait Until Page Contains Element           ${docsCarregados}       ${TIMEOUT}
     Wait Until Page Contains Element           ${canvas3}    ${TIMEOUT}
     Wait Until Page Contains Element           ${canvas4}    ${TIMEOUT}
-
 Adicionar pin
     # Clica no botão de add e-mail e valida o e-mail adicionado
     Click Element                              ${addEmail}
