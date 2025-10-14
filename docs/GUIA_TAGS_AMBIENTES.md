@@ -187,10 +187,10 @@ robot --include homol --include ui tests/web/ui/
 ### **URLs por Ambiente**
 ```robot
 # Em resources/config/config_environment.robot
-${URL_DEV}              https://ghost.d4sign.com.br/
-${URL_HOMOL}            https://homol.d4sign.com.br/
-${URL_STAGING}          https://stage.d4sign.com.br/
-${URL_PROD}             https://secure.d4sign.com.br/
+${URL_GHOST}              https://ghost.d4sign.com.br/
+${URL_HOMOL}              https://homol.d4sign.com.br/
+${URL_STAGING}            https://stage.d4sign.com.br/
+${URL_PROD}               https://secure.d4sign.com.br/
 ```
 
 ### **Timeouts por Ambiente**

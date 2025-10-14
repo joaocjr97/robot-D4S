@@ -23,7 +23,7 @@ ${PROD_TAG}               prod
 *** Keywords ***
 Log Tag Info
     [Documentation]    Log informações específicas baseadas na tag do teste
-    [Arguments]    ${tag}    ${message}    ${level}=INFO
+    [Arguments]    ${tag}    ${message}    
     
     ${emoji}=    Set Variable If
     ...    '${tag}' == '${SMOKE_TAG}'           🔥
@@ -38,7 +38,7 @@ Log Tag Info
     ...    '${tag}' == '${BATCH_TAG}'           📦
     ...    🏷️
     
-    Log    ${emoji} [${tag}] ${message}    ${level}
+    Log    ${emoji} [${tag}] ${message}    
 
 Log Smoke Test Info
     [Documentation]    Log específico para smoke tests

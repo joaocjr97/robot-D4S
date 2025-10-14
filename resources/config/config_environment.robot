@@ -7,10 +7,10 @@ ${SCREENSHOT_ON_FAIL}   ${TRUE}     # true, false
 ${LOG_LEVEL}            DEBUG       # DEBUG, INFO, WARN, ERROR, TRACE
 
 # URLs por ambiente
-${URL_DEV}              https://ghost.d4sign.com.br/
-${URL_HOMOL}            https://homol.d4sign.com.br/
-${URL_STAGING}          https://stage.d4sign.com.br/
-${URL_PROD}             https://secure.d4sign.com.br/
+${URL_GHOST}                https://ghost.d4sign.com.br/
+${URL_HOMOL}                https://homol.d4sign.com.br/
+${URL_STAGING}              https://stage.d4sign.com.br/
+${URL_PROD}                 https://secure.d4sign.com.br/
 
 # Configurações de timeout por ambiente
 ${TIMEOUT_DEV}          240s

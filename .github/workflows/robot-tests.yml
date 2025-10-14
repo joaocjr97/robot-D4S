@@ -2,12 +2,12 @@ name: 🤖 Robot Framework Tests
 
 on:
   push:
-    branches: [ main ] # homol, dev, prod, hotfix
+    branches: [ ghost, homol ] # homol, dev, prod, hotfix
   pull_request:
-    branches: [ main ]
+    branches: [ ghost, homol ]
   schedule:
-    # Executa testes todos os dias às 2h UTC (23h BRT)
-    - cron: '0 2 * * *'
+    # Executa testes todos os dias às 12h UTC (09h BRT)
+    - cron: '0 12 * * *'
   workflow_dispatch:
     inputs:
       environment:
@@ -16,6 +16,7 @@ on:
         default: 'prod'
         type: choice
         options:
+        - ghost
         - homol
         - staging
         - prod

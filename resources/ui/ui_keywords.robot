@@ -15,7 +15,7 @@ Test Setup
     
     Set Log Level    DEBUG
     ${url}=    Set Variable If
-    ...    '${ENVIRONMENT}'=='dev'         ${URL_DEV}
+    ...    '${ENVIRONMENT}'=='dev'         ${URL_GHOST}
     ...    '${ENVIRONMENT}'=='homol'       ${URL_HOMOL}
     ...    '${ENVIRONMENT}'=='staging'     ${URL_STAGING}
     ...    '${ENVIRONMENT}'=='prod'        ${URL_PROD}
