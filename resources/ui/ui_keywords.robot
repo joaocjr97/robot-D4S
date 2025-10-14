@@ -24,7 +24,7 @@ Test Setup
     Set Suite Variable    ${URL}    ${url}
 
     ${timeout}=    Set Variable If
-    ...    '${ENVIRONMENT}'=='dev'         ${TIMEOUT_DEV}
+    ...    '${ENVIRONMENT}'=='ghost'       ${TIMEOUT_DEV}
     ...    '${ENVIRONMENT}'=='homol'       ${TIMEOUT_STAGING}
     ...    '${ENVIRONMENT}'=='staging'     ${TIMEOUT_STAGING}
     ...    '${ENVIRONMENT}'=='prod'        ${TIMEOUT_PROD}

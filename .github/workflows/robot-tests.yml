@@ -2,9 +2,9 @@ name: 🤖 Robot Framework Tests
 
 on:
   push:
-    branches: [ ghost, homol ] # homol, dev, prod, hotfix
+    branches: [ main ] # homol, dev, prod, hotfix
   pull_request:
-    branches: [ ghost, homol ]
+    branches: [ main ]
   schedule:
     # Executa testes todos os dias às 12h UTC (09h BRT)
     - cron: '0 12 * * *'
